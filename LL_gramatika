@@ -1,0 +1,45 @@
+PROG -> eol PROG
+PROG -> package_main FUNC
+FUNC -> id_func ( PARAMS_IN ) PARAMS_OUT { eol STATEMENT eol } FUNC
+FUNC -> eol FUNC
+TYPE -> int
+TYPE -> float64
+TYPE -> id_func ( ARG ) eol STATEMENT
+TYPE -> string
+TYPE -> EXPRESSION
+PARAMS_IN -> eps
+PARAMS_IN -> id VAR PARAMS_IN_N
+PARAMS_IN_N -> eps
+PARAMS_IN_N -> , id VAR PARAMS_IN_N
+PARAMS_OUT -> eps
+PARAMS_OUT -> ( VAR PARAMS_OUT_N )
+PARAMS_OUT_N -> eps
+PARAMS_OUT_N -> , VAR PARAMS_OUT_N
+STATEMENT -> id_var DIFF_VAR
+STATEMENT -> return RET eol STATEMENT
+STATEMENT -> if EXPRESSION { eol STATEMENT eol } else { eol STATEMENT eol } eol STATEMENT
+STATEMENT -> for DEF_VAR ; EXPRESSION ; FOR_3 { eol STATEMENT eol } eol STATEMENT
+STATEMENT -> eps
+STATEMENT -> id_func ( ARG ) eol STATEMENT
+ID_STMT_N -> eps
+ID_STMT_N -> , id_var ID_STMT_N
+ARG -> eps
+ARG -> VAR ARG_N
+ARG_N -> eps
+ARG_N -> , VAR ARG_N
+VAR -> int
+VAR -> float64
+VAR -> string
+DEF_VAR -> eps
+DEF_VAR -> id_var := TYPE
+FOR_3 -> eps
+FOR_3 -> id_var ID_STMT_N = TYPE
+DIFF_VAR -> := TYPE eol STATEMENT
+DIFF_VAR -> ID_STMT_N = TYPE eol STATEMENT
+RET -> eps
+RET -> int RET_N
+RET -> float64 RET_N
+RET -> string RET_N
+RET -> EXPRESSION RET_N
+RET_N -> eps
+RET_N -> , RET
