@@ -6,9 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/list/Documents/frigi/ifj/ifj-git/scanner.c
+/Users/list/Documents/frigi/ifj/ifj-git/error.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/parser.c
+parser.h
+/Users/list/Documents/frigi/ifj/ifj-git/parser.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/parser.h
+stdbool.h
+-
 scanner.h
 /Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+error.h
+/Users/list/Documents/frigi/ifj/ifj-git/error.h
 
 /Users/list/Documents/frigi/ifj/ifj-git/scanner.h
 ctype.h
@@ -17,20 +27,18 @@ stdio.h
 -
 stdlib.h
 -
-string.h
--
 stdbool.h
 -
 math.h
 -
+string.h
+/Users/list/Documents/frigi/ifj/ifj-git/string.h
+error.h
+/Users/list/Documents/frigi/ifj/ifj-git/error.h
 
-/Users/list/Documents/frigi/ifj/ifj-git/test.c
-test.h
-/Users/list/Documents/frigi/ifj/ifj-git/test.h
-stdio.h
+/Users/list/Documents/frigi/ifj/ifj-git/string.h
+stdlib.h
 -
-
-/Users/list/Documents/frigi/ifj/ifj-git/test.h
-scanner.h
-/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+string.h
+-
 

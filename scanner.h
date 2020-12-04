@@ -1,9 +1,10 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include <stdbool.h>
 #include <math.h>
+#include "string.h"
+#include "error.h"
 
 typedef enum {
     // Data types
@@ -58,6 +59,7 @@ typedef enum {
     PACKAGE = 7,
     RETURN = 8,
     STRING = 9,
+
 } Keyword;
 
 typedef union {
@@ -77,8 +79,6 @@ void setSourceFile(FILE *file);
 int isKeyword(char *string);
 
 int getToken(Token *token);
-
-char *appendCharToString(char c, char *string);
 
 int stringToInteger(char *string);
 

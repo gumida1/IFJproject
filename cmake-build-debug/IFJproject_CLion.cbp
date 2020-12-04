@@ -78,10 +78,25 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/error.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/parser.c">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/parser.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/scanner.c">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/scanner.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string.c">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/test.c">

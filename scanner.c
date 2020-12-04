@@ -1,8 +1,5 @@
 #include "scanner.h"
 
-#define RETURN_OK 0
-#define RETURN_FAILURE 1
-
 #define SCANNER_BLOCK_COMMENT 101
 #define SCANNER_EQUAL 110
 #define SCANNER_IDENTIFIER_KEYWORD 103
@@ -24,10 +21,9 @@ int getToken(Token *token) {
     int scanner_state = SCANNER_INIT;
     char c = 0;
     char tmp = 0;
-    char *string = "";
+    char *string = initString();
     while (1) {
         c = (char) getc(source_file);
-//        printf("%c\n", c);
         switch (scanner_state) {
             case SCANNER_BLOCK_COMMENT: // DONE
                 if (c == '*') {
@@ -45,11 +41,11 @@ int getToken(Token *token) {
                     ungetc(c, source_file);
                     token->type = ASSIGN;
                 }
-                return RETURN_OK;
+                return SCANNER_OK;
 
             case SCANNER_IDENTIFIER_KEYWORD: // DONE
                 while (c == '_' || isalpha(c) || isdigit(c)) {
-                    string = appendCharToString(c, string);
+                    appendCharToString(c, string);
                     c = getc(source_file);
                 }
                 ungetc(c, source_file);
@@ -61,7 +57,7 @@ int getToken(Token *token) {
                     token->type = IDENTIFIER;
                     token->attribute.string = string;
                 }
-                return RETURN_OK;
+                return SCANNER_OK;
 
             case SCANNER_INIT:
                 if (c == '=') {
@@ -79,7 +75,7 @@ int getToken(Token *token) {
                     ungetc(c, source_file);
                     scanner_state = SCANNER_SYMBOL;
                 } else if (c == '_' || isalpha(c)) {
-                    string = appendCharToString(c, string);
+                    appendCharToString(c, string);
                     scanner_state = SCANNER_IDENTIFIER_KEYWORD;
                 } else if (c >= 48 && c <= 57) {
                     ungetc(c, source_file);
@@ -88,11 +84,11 @@ int getToken(Token *token) {
                     scanner_state = SCANNER_STRING;
                 } else if (c == '\n') {
                     token->type = END_OF_LINE;
-                    return RETURN_OK;
+                    return SCANNER_OK;
                 } else if (isspace(c)) {
                     break;
                 } else {
-                    return RETURN_FAILURE;
+                    return SCANNER_ERROR;
                 }
                 break;
 
@@ -108,38 +104,38 @@ int getToken(Token *token) {
                 if (c == 48) {
                     tmp = getc(source_file);
                     if (tmp == '.') {
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                         ungetc(tmp, source_file);
                     } else {
                         ungetc(tmp, source_file);
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                         token->type = DATA_TYPE_INT;
                         token->attribute.integer = stringToInteger(string);
-                        return RETURN_OK;
+                        return SCANNER_OK;
                     }
                 } else {
                     // Begin of 1
                     while (isdigit(c)) {
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                         c = getc(source_file);
                     }
                     bool dec = false;
                     if (c == '.') {
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                         c = getc(source_file);
                         while (isdigit(c)) {
-                            string = appendCharToString(c, string);
+                            appendCharToString(c, string);
                             c = getc(source_file);
                         }
                         dec = true;
                     }
                     if (c == 'e' || c == 'E') {
                         // Begin of 2
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                         c = getc(source_file);
                         bool op = false;
                         if (c == '+' || c == '-') {
-                            string = appendCharToString(c, string);
+                            appendCharToString(c, string);
                             c = getc(source_file);
                             op = true;
                         }
@@ -150,32 +146,32 @@ int getToken(Token *token) {
                             } else if (c > 48 && c <= 57) {
                                 break;
                             } else {
-                                string = appendCharToString(0, string);
+                                appendCharToString(0, string);
                                 token->type = DATA_TYPE_FLOAT64;
                                 token->attribute.float64 = exponentionalNumToFloat(string);
-                                return RETURN_OK;
+                                return SCANNER_OK;
                             }
                         }
                         if (c > 48 && c <= 57) {
-                            string = appendCharToString(c, string);
+                            appendCharToString(c, string);
                             c = getc(source_file);
                             while (isdigit(c)) {
-                                string = appendCharToString(c, string);
+                                appendCharToString(c, string);
                                 c = getc(source_file);
                             }
                             ungetc(c, source_file);
                             //result
                             token->type = DATA_TYPE_FLOAT64;
                             token->attribute.float64 = exponentionalNumToFloat(string);
-                            return RETURN_OK;
+                            return SCANNER_OK;
                         } else {
                             ungetc(c, source_file);
                             if (op && isdigit(string[strlen(string)])) {
                                 token->type = DATA_TYPE_FLOAT64;
                                 token->attribute.float64 = exponentionalNumToFloat(string);
-                                return RETURN_OK;
+                                return SCANNER_OK;
                             } else {
-                                return RETURN_FAILURE;
+                                return SCANNER_ERROR;
                             }
                         }
                         // End of 2
@@ -188,7 +184,7 @@ int getToken(Token *token) {
                         token->type = DATA_TYPE_INT;
                         token->attribute.integer = stringToInteger(string);
                     }
-                    return RETURN_OK;
+                    return SCANNER_OK;
                     // End of 1
                 }
                 break;
@@ -214,7 +210,7 @@ int getToken(Token *token) {
                     ungetc(tmp, source_file);
                     switch (c) {
                         case '!':
-                            return RETURN_FAILURE;
+                            return SCANNER_ERROR;
                         case '<':
                             token->type = LESS;
                             break;
@@ -222,22 +218,22 @@ int getToken(Token *token) {
                             token->type = MORE;
                             break;
                         case ':':
-                            return RETURN_FAILURE;
+                            return SCANNER_ERROR;
                     }
                 }
-                return RETURN_OK;
+                return SCANNER_OK;
 
             case SCANNER_OPERATOR: // DONE
                 switch (c) {
                     case '+':
                         token->type = ADDITION;
-                        return RETURN_OK;
+                        return SCANNER_OK;
                     case '-':
                         token->type = SUBSTRACTION;
-                        return RETURN_OK;
+                        return SCANNER_OK;
                     case '*':
                         token->type = MULTIPLICATION;
-                        return RETURN_OK;
+                        return SCANNER_OK;
                 }
 
             case SCANNER_SLASH: // DONE
@@ -249,9 +245,9 @@ int getToken(Token *token) {
                     break;
                 } else {
                     token->type = DIVISION;
-                    return RETURN_OK;
+                    return SCANNER_OK;
                 }
-                return RETURN_FAILURE;
+                return SCANNER_ERROR;
 
             case SCANNER_STRING:
                 while (c != '"') {
@@ -264,33 +260,33 @@ int getToken(Token *token) {
                                 char first = c;
                                 if (isdigit(c) || (c >= 'A' && c <= 'F') ||
                                     (c >= 'a' && c <= 'f')) {
-                                    string = appendCharToString(0x5c, string);
-                                    string = appendCharToString('x', string);
-                                    string = appendCharToString(first, string);
-                                    string = appendCharToString(c, string);
+                                    appendCharToString(0x5c, string);
+                                    appendCharToString('x', string);
+                                    appendCharToString(first, string);
+                                    appendCharToString(c, string);
                                 } else {
-                                    return RETURN_FAILURE;
+                                    return SCANNER_ERROR;
                                 }
                             } else {
-                                return RETURN_FAILURE;
+                                return SCANNER_ERROR;
                             }
                         } else if (c == '"' || c == 'n' || c == 't' ||
                                    c == '\\') {
-                            string = appendCharToString(0x5c, string);
-                            string = appendCharToString(c, string);
+                            appendCharToString(0x5c, string);
+                            appendCharToString(c, string);
                         } else {
-                            return RETURN_FAILURE;
+                            return SCANNER_ERROR;
                         }
                     } else if (c > 31) {
-                        string = appendCharToString(c, string);
+                        appendCharToString(c, string);
                     } else {
-                        return RETURN_FAILURE;
+                        return SCANNER_ERROR;
                     }
                     c = getc(source_file);
                 }
                 token->type = DATA_TYPE_STRING;
                 token->attribute.string = string;
-                return RETURN_OK;
+                return SCANNER_OK;
 
             case SCANNER_SYMBOL: // DONE
                 switch (c) {
@@ -319,20 +315,11 @@ int getToken(Token *token) {
                         token->type = SEMICOLON;
                         break;
                 }
-                return RETURN_OK;
+                return SCANNER_OK;
         }
     }
 
     return 0;
-}
-
-char *appendCharToString(char c, char *string) {
-    size_t len = strlen(string);
-    char *tmp = (char *) malloc(len + 1 + 1); /* one for extra char, one for trailing zero */
-    strcpy(tmp, string);
-    tmp[len] = c;
-    tmp[len + 1] = '\0';
-    return tmp;
 }
 
 int isKeyword(char *string) {

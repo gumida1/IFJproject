@@ -143,6 +143,33 @@ IFJproject_CLion/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/build
 .PHONY : IFJproject_CLion/fast
 
+parser.o: parser.c.o
+
+.PHONY : parser.o
+
+# target to build an object file
+parser.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/parser.c.o
+.PHONY : parser.c.o
+
+parser.i: parser.c.i
+
+.PHONY : parser.i
+
+# target to preprocess a source file
+parser.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/parser.c.i
+.PHONY : parser.c.i
+
+parser.s: parser.c.s
+
+.PHONY : parser.s
+
+# target to generate assembly for a file
+parser.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/parser.c.s
+.PHONY : parser.c.s
+
 scanner.o: scanner.c.o
 
 .PHONY : scanner.o
@@ -169,6 +196,33 @@ scanner.s: scanner.c.s
 scanner.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/scanner.c.s
 .PHONY : scanner.c.s
+
+string.o: string.c.o
+
+.PHONY : string.o
+
+# target to build an object file
+string.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.o
+.PHONY : string.c.o
+
+string.i: string.c.i
+
+.PHONY : string.i
+
+# target to preprocess a source file
+string.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.i
+.PHONY : string.c.i
+
+string.s: string.c.s
+
+.PHONY : string.s
+
+# target to generate assembly for a file
+string.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.s
+.PHONY : string.c.s
 
 test.o: test.c.o
 
@@ -206,9 +260,15 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... IFJproject_CLion"
+	@echo "... parser.o"
+	@echo "... parser.i"
+	@echo "... parser.s"
 	@echo "... scanner.o"
 	@echo "... scanner.i"
 	@echo "... scanner.s"
+	@echo "... string.o"
+	@echo "... string.i"
+	@echo "... string.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

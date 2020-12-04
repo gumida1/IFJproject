@@ -7,11 +7,7 @@ int main(int argc, char *argv[]) {
     FILE *f = fopen("/Users/list/Documents/frigi/ifj/IFJproject-CLion/tests/varfun.go", "r");
     setSourceFile(f);
     Token *t = (Token *)malloc(sizeof(Token));
-    int d;
-    while ((d = getToken(t)) == 0) {
-        printToken(*t);
-    }
-    return 0;
+    return prog(t);
 }
 
 void printToken(Token token) {
