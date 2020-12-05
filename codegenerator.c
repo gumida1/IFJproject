@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "codegenerator.h"
-#include "scanner.h"
+//#include "scanner.h"
 
 
 #define ADD(addition) string_dyn_add(&code_dest, addition)
@@ -87,7 +87,7 @@ void gen_func_arg(int position, char* id_arg) {
     ADD("MOVE LF@");
     ADD(id_arg);
     ADD_W_EOL();
-    ADD(" LF@");
+    ADD(" LF@!");
     ADD_INT(position);
     ADD_W_EOL();
 }
@@ -105,6 +105,7 @@ void gen_func_ret(char* id_func) {
 
 void gen_token_val(Token token_val) {
     char tmp_str[42];
+    unsigned char x;
     string_dyn tmp;
     string_dyn_init(&tmp, 8);
     switch (token_val.type) {
@@ -123,9 +124,7 @@ void gen_token_val(Token token_val) {
         ADD(tmp_str);
         break;
     case DATA_TYPE_STRING:
-        unsigned char x;
-        unsigned char y = (unsigned char) (token_val.attribute.string);
-        for (int i = 0; x = y != '\0'; i++) {
+        for (int i = 0; (x = (unsigned char) (token_val.attribute.string[i])) != '\0'; i++) {
             if (x <= 32 || x == 35 || x == '\\' || isprint(x) == 0) {
                 string_dyn_add_char(&tmp, '\\');
                 sprintf(tmp_str, "%03d", x);
@@ -141,6 +140,17 @@ void gen_token_val(Token token_val) {
         break; 
     }
     string_dyn_free(&tmp);
+}
+
+void gen_func_arg_pass(Token token_arg, int position) {
+    ADD("DEFVAR TF@!");
+    ADD_INT(position);
+    ADD_W_EOL();
+    ADD("MOVE TF@!");
+    ADD_INT(position);
+    ADD(" ");
+    gen_token_val(token_arg);
+    ADD_W_EOL();
 }
 
 void gen_var_init(Types type) {

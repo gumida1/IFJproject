@@ -33,6 +33,8 @@ void gen_func_ret(char* id_func);
 
 void gen_token_val(Token token_val);
 
+void gen_func_arg_pass(Token token_arg, int position);
+
 void gen_var_init(Types type);
 
 
