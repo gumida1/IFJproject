@@ -45,6 +45,4 @@ void gen_var_declaration(char* id_var);
 
 void gen_var_default (char* id_var, Types type_var);
 
-void gen_print_function();
-
 //void gen_if_start();

@@ -295,9 +295,6 @@ void gen_var_default (char* id_var, Types type_var) {
     ADD_W_EOL();
 }
 
-void gen_print_function() {
-    ADD_W_EOL("WRITE GF@?global_var");
-}
 
 /*void gen_if_start() {
 
