@@ -13,6 +13,10 @@ void gen_start();
 
 void gen_head();
 
+void gen_inbuilt_funcs();
+
+void gen_free();
+
 void generation();
 
 void gen_main();
@@ -37,6 +41,10 @@ void gen_func_arg_pass(Token token_arg, int position);
 
 void gen_var_init(Types type);
 
+void gen_var_declaration(char* id_var);
 
+void gen_var_default (char* id_var, Types type_var);
 
+void gen_print_function();
 
+//void gen_if_start();

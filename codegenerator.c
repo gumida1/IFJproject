@@ -14,19 +14,129 @@
 		ADD(int_to_str);								\
 	} while (0)
 
+#define FUNC_INPUTS \
+"\n LABEL $inputs" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n READ LF@?ret string" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_INPUTI \
+"\n LABEL $inputi" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n READ LF@?ret int" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_INPUTF \
+"\n LABEL $inputf" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n READ LF@?ret float" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_PRINT \
+"\n LABEL $print" \
+"\n PUSHFRAME" \
+"\n WRITE LF@?i" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_INT2FLOAT \
+"\n LABEL $int2float" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n INT2FLOAT LF@?ret LF@?0" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_FLOAT2INT \
+"\n LABEL $float2int" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n FLOAT2INT LF@?ret LF@?0" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_LEN \
+"\n LABEL $len" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n STRLEN LF@?ret LF@?0" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_ORD \
+"\n LABEL $ord" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n MOVE LF@?ret int@0" \
+"\n DEFVAR LF@help1" \
+"\n LT LF@help1 LF@?1 int@0" \
+"\n JUMPIFEQ $ordret LF@help1 bool@true" \
+"\n DEFVAR LF@help2" \
+"\n CREATEFRAME" \
+"\n DEFVAR TF@?0" \
+"\n MOVE TF@?0 LF@?0" \
+"\n CALL $len" \
+"\n MOVE LF@help2 TF@?ret" \
+"\n GT LF@help1 LF@?1 LF@help2" \
+"\n JUMPIFEQ $ordret LF@help1 bool@true" \
+"\n SUB LF@?1 LF@?1 int@1" \
+"\n STRI2INT LF@?ret LF@?0 LF@?1" \
+"\n LABEL $ordret" \
+"\n POPFRAME" \
+"\n RETURN"
+
+#define FUNC_CHR \
+"\n LABEL $chr" \
+"\n PUSHFRAME" \
+"\n DEFVAR LF@?ret" \
+"\n MOVE LF@?ret string@" \
+"\n DEFVAR LF@help1" \
+"\n LT LF@help1 LF@?0 int@0" \
+"\n JUMPIFEQ $chrret LF@help1 bool@true" \
+"\n GT LF@help1 LF@?0 int@255" \
+"\n JUMPIFEQ $chrret LF@help1 bool@true" \
+"\n INT2CHAR LF@?ret LF@?0" \
+"\n LABEL $chrret" \
+"\n POPFRAME" \
+"\n RETURN"
+
+/* 
+*
+*
+*   MISSING DEFINE OF FUNC_SUBSTR
+*
+*
+*/
 
 string_dyn code_dest;
-
-//space for inbuilt fcs
-/*
-/
-*/
 
 void gen_head() {
     ADD_W_EOL("#Program IFJcode20 beginning");
     ADD_W_EOL(".IFJcode20");
     ADD_W_EOL("DEFVAR GF@?global_var");
     ADD_W_EOL("JUMP $$main");
+}
+
+void gen_inbuilt_funcs() {
+    ADD_W_EOL(FUNC_INPUTS);
+    ADD_W_EOL(FUNC_INPUTI);
+    ADD_W_EOL(FUNC_INPUTF);
+    ADD_W_EOL(FUNC_PRINT);
+    ADD_W_EOL(FUNC_INT2FLOAT);
+    ADD_W_EOL(FUNC_FLOAT2INT);
+    ADD_W_EOL(FUNC_LEN);
+    ADD_W_EOL(FUNC_ORD);
+    ADD_W_EOL(FUNC_CHR);
+}
+
+void gen_free() {
+    string_dyn_free(&code_dest);
 }
 
 void generation()
@@ -51,7 +161,6 @@ void gen_main_end() {
 }
 
 void gen_func_start(char* id_func) {
-    ADD_W_EOL("#Function beginning");
     ADD("LABEL $");
     ADD(id_func);
     ADD("\n");
@@ -59,10 +168,10 @@ void gen_func_start(char* id_func) {
 }
 
 void gen_func_end(char* id_func) {
-    ADD_W_EOL("#Function ending");
+    ADD_W_EOL("#testujeme");
     ADD("LABEL $");
     ADD(id_func);
-    ADD_W_EOL("!return");
+    ADD_W_EOL("?ret");
     ADD_W_EOL("POPFRAME");
     ADD_W_EOL("RETURN");
 }
@@ -87,7 +196,7 @@ void gen_func_arg(int position, char* id_arg) {
     ADD("MOVE LF@");
     ADD(id_arg);
     ADD_W_EOL();
-    ADD(" LF@!");
+    ADD(" LF@?");
     ADD_INT(position);
     ADD_W_EOL();
 }
@@ -100,7 +209,7 @@ void gen_func_ret(char* id_func) {
     ADD_W_EOL("MOVE LF@?ret GF@?global_var");
     ADD("JUMP $");
     ADD(id_func);
-    ADD("!return");
+    ADD("?ret");
 }
 
 void gen_token_val(Token token_val) {
@@ -143,18 +252,18 @@ void gen_token_val(Token token_val) {
 }
 
 void gen_func_arg_pass(Token token_arg, int position) {
-    ADD("DEFVAR TF@!");
+    ADD("DEFVAR TF@?");
     ADD_INT(position);
     ADD_W_EOL();
-    ADD("MOVE TF@!");
+    ADD("MOVE TF@?");
     ADD_INT(position);
     ADD(" ");
     gen_token_val(token_arg);
     ADD_W_EOL();
 }
 
-void gen_var_init(Types type) {
-    switch (type) {
+void gen_var_init(Types type_var) {
+    switch (type_var) {
     case T_INT:
         ADD("int@0");
         break;
@@ -172,5 +281,24 @@ void gen_var_init(Types type) {
     }
 }
 
+void gen_var_declaration(char* id_var) {
+    ADD("DEFVAR LF@");
+    ADD(id_var);
+    ADD_W_EOL();
+}
 
+void gen_var_default (char* id_var, Types type_var) {
+    ADD("MOVE LF@");
+    ADD(id_var);
+    ADD(" ");
+    gen_var_init(type_var);
+    ADD_W_EOL();
+}
 
+void gen_print_function() {
+    ADD_W_EOL("WRITE GF@?global_var");
+}
+
+/*void gen_if_start() {
+
+}*/
