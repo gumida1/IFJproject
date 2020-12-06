@@ -295,7 +295,47 @@ void gen_var_default (char* id_var, Types type_var) {
     ADD_W_EOL();
 }
 
+void gen_label(char* id_func, int counter_label, int counter_label_depth) {
+    ADD("LABEL $");
+    ADD(id_func);
+    ADD("?");
+    ADD_INT(counter_label);
+    ADD("?");
+    ADD_INT(counter_label_depth);
+    ADD_W_EOL();
+}
 
-/*void gen_if_start() {
+void gen_if(char* id_func, int counter_label, int counter_label_depth) {
+    ADD("JUMPIFEQ $");
+    ADD(id_func);
+    ADD("?");
+    ADD_INT(counter_label);
+    ADD("?");
+    ADD_INT(counter_label_depth);
+    ADD_W_EOL(" GF@?global_var bool@false");
+}
 
-}*/
+void gen_else(char* id_func, int counter_label, int counter_label_depth) {
+    ADD("JUMP $");
+    ADD(id_func);
+    ADD("?");
+    ADD_INT(counter_label + 1);
+    ADD("?");
+    ADD_INT(counter_label_depth);
+    ADD_W_EOL();
+    gen_label(id_func, counter_label, counter_label_depth);
+}
+
+void gen_push_to_stack(Token token_stack) {
+    ADD("PUSHS ");
+    gen_token_val(token_stack);
+    ADD_W_EOL();
+}
+
+/*
+*
+*
+*   MISSING FOR AND MATH OPERATIONS
+*
+*
+*/

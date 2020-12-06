@@ -45,4 +45,10 @@ void gen_var_declaration(char* id_var);
 
 void gen_var_default (char* id_var, Types type_var);
 
-//void gen_if_start();
+void gen_label(char* id_func, int counter_label, int counter_label_depth);
+
+void gen_if(char* id_func, int counter_label, int counter_label_depth);
+
+void gen_else(char* id_func, int counter_label, int counter_label_depth);
+
+void gen_push_to_stack(Token token_stack);

@@ -34,6 +34,7 @@ void string_dyn_add(string_dyn *str, const char *c_string) {
     str->string[str->size] = '\0';
 }
 
+//adds char to existing string
 void string_dyn_add_char(string_dyn *str, char x) {
     if (str->size + 1 >= str->quantity) {
         size_t realloc_size = str->size + 8;
