@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 
+
 typedef struct {
     char* string;
     size_t size;

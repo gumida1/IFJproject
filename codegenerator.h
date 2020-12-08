@@ -1,8 +1,14 @@
+#ifndef CODEGENERATOR_H
+#define CODEGENERATOR_H
+
 #include <stdlib.h>
-#include "scanner.h"
-#include "string_dyn.h"
+//#include "scanner.h"
+//#include "string_dyn.h"
+#include "expression.h"
+
 
 typedef enum {
+    T_UNDEF,
     T_INT,
     T_FLOAT,
     T_STRING,
@@ -52,3 +58,7 @@ void gen_if(char* id_func, int counter_label, int counter_label_depth);
 void gen_else(char* id_func, int counter_label, int counter_label_depth);
 
 void gen_push_to_stack(Token token_stack);
+
+void gen_math_operations(Prec_rules rule);
+
+#endif

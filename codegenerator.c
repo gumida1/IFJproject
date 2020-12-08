@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include "string_dyn.h"
+#include "scanner.h"
 #include "codegenerator.h"
-//#include "scanner.h"
+
 
 
 #define ADD(addition) string_dyn_add(&code_dest, addition)
@@ -120,6 +122,8 @@ void gen_head() {
     ADD_W_EOL("#Program IFJcode20 beginning");
     ADD_W_EOL(".IFJcode20");
     ADD_W_EOL("DEFVAR GF@?global_var");
+    ADD_W_EOL("DEFVAR GF@?global_math_var1");
+    ADD_W_EOL("DEFVAR GF@?global_math_var2");
     ADD_W_EOL("JUMP $$main");
 }
 
@@ -332,10 +336,64 @@ void gen_push_to_stack(Token token_stack) {
     ADD_W_EOL();
 }
 
+void gen_math_operations(Prec_rules rule) {
+    switch(rule) {
+    case RULE_PLUS:
+        ADD_W_EOL("ADDS");
+        break;
+    case RULE_MINUS:
+        ADD_W_EOL("SUBS");
+        break;
+    case RULE_MUL:
+        ADD_W_EOL("MULS");
+        break;
+    case RULE_DIV:
+        ADD_W_EOL("DIVS");
+        break;
+    case RULE_EQUAL:
+        ADD_W_EOL("EQS");
+        break;
+    case RULE_N_EQUAL:
+        ADD_W_EOL("EQS");
+        ADD_W_EOL("NOTS");
+        break;
+    case RULE_L_EQUAL:
+        ADD_W_EOL("POPS GF@?global_math_var1");
+		ADD_W_EOL("POPS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var1");
+		ADD_W_EOL("LTS");
+		ADD_W_EOL("PUSHS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var1");
+		ADD_W_EOL("EQS");
+		ADD_W_EOL("ORS");
+		break;
+    case RULE_M_EQUAL:
+        ADD_W_EOL("POPS GF@?global_math_var1");
+		ADD_W_EOL("POPS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var1");
+		ADD_W_EOL("GTS");
+		ADD_W_EOL("PUSHS GF@?global_math_var2");
+		ADD_W_EOL("PUSHS GF@?global_math_var1");
+		ADD_W_EOL("EQS");
+		ADD_W_EOL("ORS");
+		break;
+    case RULE_LESS:
+        ADD_W_EOL("LTS");
+        break;
+    case RULE_MORE:
+        ADD_W_EOL("GTS");
+        break;
+    default:
+        break;
+    }
+}
+
 /*
 *
 *
-*   MISSING FOR AND MATH OPERATIONS
+*   MISSING FOR
 *
 *
 */
