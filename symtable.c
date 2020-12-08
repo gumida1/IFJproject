@@ -3,6 +3,8 @@
 #include "error.h"
 #include "scanner.h"
 
+///SJEDNOTIT ERROR VÝSTUPY
+
 
 void SymbolTableInit(tBSTNodePtr *RootPtr) {
     *RootPtr = NULL;
