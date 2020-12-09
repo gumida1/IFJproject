@@ -1,0 +1,157 @@
+\documentclass[a4paper, 11pt]{article}
+
+
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[left=2cm, top=3cm, text={17cm, 24cm}]{geometry}
+\usepackage{times}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{graphicx} % vkládání obrázků
+\usepackage[unicode]{hyperref}
+\hypersetup{
+	colorlinks = true,
+	hypertexnames = false,
+	citecolor = red
+}
+
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}} 
+
+
+\begin{document}
+
+
+	\begin{titlepage}
+		\begin{center}
+			\includegraphics[width=0.77\linewidth]{FIT_logo.pdf} \\
+
+			\vspace{\stretch{0.382}}
+
+			\Huge{Projektová dokumentace} \\
+			\LARGE{\textbf{Implementace překladače imperativního jazyka IFJ20}} \\
+			\Large{Tým 109, varianta \RNum{1}}
+			\vspace{\stretch{0.618}}
+		\end{center}
+
+		\begin{minipage}{0.4 \textwidth}
+			{\Large \today}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.6 \textwidth}
+			\Large
+			\begin{tabular}{l l l}
+				\textbf{Jan Kleisl} & \textbf{(xkleis00)} & \quad 50\,\% \\
+				Jan Frühauf & (xfruha00) & \quad 50\,\% \\
+				Otakar Sedlák & (xsedla1r) & \quad 0\,\% \\
+				Vladyslav Tverdokhlib & (xtverd01) & \quad 0\,\% \\
+			\end{tabular}
+		\end{minipage}
+	\end{titlepage}
+
+
+
+	\pagenumbering{roman}
+	\setcounter{page}{1}
+	\tableofcontents
+	\clearpage
+
+
+
+	
+	\pagenumbering{arabic}
+	\setcounter{page}{1}
+
+	\section{Úvod}
+
+	V projektu jsme se měli naučit naprogramovat překladač v jazyce C. Tento překladač měl načítat jako zdrojový jazyk IFJ20 (podmnožina programovacího jazyka Go) a překládat ho do cílového jazyka IFJcode20 (mezikód). Překladač načítá ze standardního datového vstupu a vypisuje na standardní datový výstup.
+
+
+
+	
+	\section{Návrh, implementace a jednotlivé části}
+
+	Překladač se skládá z několika částí, na kterých jsme v průběhu semestru pracovali. Níže budou popsány jednotlivé části podrobněji.
+	
+	\subsection{Lexikální analýza}
+	
+	Lexikální analýza je tvořena souborem \texttt{scanner.c} a jeho hlavičkovým souborem \texttt{scanner.h}. Scanner načítá znaky a postupně z nich vytváří tokeny a ty ukládá do datové struktury \texttt{Token} která obsahuje \texttt{Token\_types} a \texttt{Token\_attribute}. Typy tokenu jsou datového typu \texttt{enum} a atribut je datového typu \texttt{union}. Rozlišujeme několik typů tokenů a to, datové typy, klíčová slova, operátory, relační znaménka, symboly a stavy \texttt{ENF\_OF\_LINE}, \texttt{END\_OF\_FILE} a \texttt{ERROR}. Dále pak přidělujeme jeden z následujících atributů: \texttt{float64}, \texttt{integer}, \texttt{keyword} a \texttt{string}.
+    
+    \subsection{Syntaktická analýza}
+    
+    Syntaktická analýza tvoří hlavní část našeho překladače. Přijímá tokeny ze scanneru, řeší korektní syntaxi kódu a volá jeho generování. Skládá se ze souborů \texttt{parser.c} a \texttt{parser.h}. Syntaktická analýza se řídí LL -- gramatikou a pravidly v LL -- tabulce. Zpracování výrazů provádíme v odděleném modulu - soubory \texttt{expression.c} a \texttt{expression.h}. Takzvaná precedenční analýza vyhodnocuje výrazy pomocí precedenční tabulky. Precedenční tabulka se skládá z operátorů \texttt{+} a -, které mají stejnou prioritu, stejně tak jako další operátory \texttt{*} a \texttt{/} proto jsou sloučeny do 2 sloupců/řádků místo 4. Dále v precedenční tabulce nalezneme levou závorku \texttt{(} , kterou následuje hned pravá závorka \texttt{)} . Jako další v pořadí jsou relační operátory =, !=, \textgreater=, \textless=, \textgreater\ a \textless\ , které jsou taky sloučené do jednoho sloupce/řádku. Předposlední se v tabulce nachází \texttt{i} , které zastupuje všechny povolené literály. Všechny nepovolené symboly zastupuje znak dalaru \texttt{\$}.
+    
+    \subsection{Sémantická analýza}
+    Tabulku symbolů jsme zpracovávali pomocí binárního vyhledávacího stromu, protože jsme měli tuto variantu projektu. V tabulce můžeme vyhledávat jestli vyhledávaný identifikátor existuje a zda odpovídají i ostatní náležitosti.
+    
+    \subsection{Generování výsledného kódu}
+    
+    Cílovým jazykem pro vygenerování kódu, jak již bylo dříve zmíněno, je IFJcode20. Kód je generován z parseru, který si však jen volá funkce ze souboru \texttt{codegenerator.c} jehož hlavičkovým souborem je \texttt{codegenerator.h}.
+    
+    \subsubsection{Průběh generování}
+    
+    První věc, která je vygenerována je hlavička, definice globálních proměnnýchv glogálním rámci \texttt{GF} a definice vestavěných funkcí. Dále už pak záleží na parseru jaké funkce na vygenerování jakých částí kódů volá. 
+    
+    \newpage
+    \subsubsection{Generování úseků}
+    Generátor pomocí implementovaných funkcí umožňuje generovat jednotlivé části a úseky kódu. Generování funkce je rozděleno do 8 funkcí pro vygenerování různých částí. Mezi základní patří například \texttt{gen\_func\_start}, \texttt{gen\_func\_end} nebo \texttt{gen\_func\_call}. Generování proměnných je rozděleno na 3 podfunkce - inicializaci, deklaraci a přiřazení základní hodnoty (nastavení na 0, prázdný string nebo false v závislosti na typu). Dále generátor obsahuje funkce na generování úseku \texttt{IF}, \texttt{ELSE} a matematické operace.
+    
+    \subsection{Překlad projektu}
+    
+    Projekt je překládán pomocí souboru \texttt{Makefile} příkazem \texttt{make}, jak bylo řečeno v zadání.
+    
+    \section{Vlastní datové struktury}
+    
+    \subsection{Binární vyhledávací strom}
+    
+    Pro realizaci tabulky symbolů jsme využili datové struktury \texttt{tBSTNode}, nacházející se v souboru \texttt{symtable.c} a \texttt{symtable.h}, kterou jsme znali z předmětu IAL a také jsme měli zadanou. Každý uzel stromu obsahuje klíč, datovou strukturu \texttt{tData} a ukazatel na levý a pravý podstrom. Struktura \texttt{tData} v sobě dále nese \texttt{tType}, \texttt{tAttributes} a počítadlo. Struktura \texttt{tType} rozlišuje mezi proměnnou a funkcí a struktura \texttt{tAttributes} mezi integerem, floatem a stringem. Binární strom má dále implementované funkce pro správnou funkčnost.
+    
+    \subsection{Dynamický řetězec} 
+    
+    Dynamický řetězec je implementovaný v souboru \texttt{string\_dyn.c} s hlavičkou v souboru \texttt{string\_dyn.h}. Struktura nese název \texttt{string\_dyn} a jak již z názvu vyplývá, jedná se o dynamický řetězec. Tuto strukturu jsme vytvořili z toho důvodu, že při generování nevíme, jak dlouhý bude výsledný řetězec dlouhý. Nad touto strukturou je implementováno několik funkcí potřebných pro správné fungování podle naší potřeby.
+    
+    \subsection{Zásobník symbolů}
+    
+    Jako další z vlastních datových struktur jsme implementovali zásobník symbolů, který využíváme během vyhodnocování výrazů v precedenční analýze. Tento zásobník nalezneme v souboru \texttt{symstack.c} a v jeho hlavičkovém souboru \texttt{symstack.h}. Znovu jsme implementovali funkce potřebné k správnému chodu.
+    
+    \section{Týmová spolupráce a práce v týmu}
+    
+    \subsection{Verzovací systém}
+    
+    Hned na začátku jsme se dohodli, že jako verzovací systém budeme využívat GitHub. Proto jsme si tam vytvořili soukromý repozitář, do kterého jsme si udělili přístup. Systém nám umožnil psát překladač ve větvích, proto jsme si vždy na nějakou část programu (scanner, parser, codegen, atp.) větev vytvořili a v ní pracovali.
+    
+    \subsection{Komunikace}
+    
+    Jako hlavní komunikační kanál jsme využívali Discord. Měli jsme vytvořenou místnost pro vývoj a hlasový kanál. Bohužel, jak se později ukázalo, jsme hlasový kanál nevyužívali a komunikovali jsme jen písemnou formou. Komunikace velmi vázla a dospěla do stádia, kdy jsme na projektu pracovali pouze ve 2, čemuž odpovídá i výsledné rozdělení.
+    
+    \newpage
+    
+    \subsection{Rozdělení práce}
+    
+    Jak již bylo zmíňeno projekt jsme dělali pouze ve 2 lidech. Proto tedy následující rozdělení.
+    
+    \textbf{Jan Kleisl}: LL-gramatika, precedenční analýza, generování kódu, dokumentace
+    
+    \textbf{Jan Frühau}: lexikální analýza, syntaktická analýza, sémantická analýza, LL-gramatika
+    
+    \textbf{Otakar Sedlák}: -
+    
+    \textbf{Vladyslav Tverdokhlib}: -
+    
+    \section{Závěr}
+    
+    Na projektu jsme začali pracovat později než bylo záhodno a tudíž jsme lehce nestíhali. Na tomto dodává i tvrzení, že jsme při práci postrádali 2 lidi což je půl týmu a to se také projeví. Velmi nám byly nápomocné přednášky a democvičení z předmětů IFJ a IAL. V průběhu jsme se setkávali s různými problémy, které jsme alespoň částečně zvládali odbavit v nejbližších následujících dnech. Tento projekt nám dal hodně zkušeností do budoucího profesního života.
+    
+    \newpage
+    
+    \section{Přílohy}
+    
+    \subsection{LL-gramatika}
+    
+    \subsection{LL-tabulka}
+    
+    \subsection{Precedenční tabulka}
+    
+	
+	
+	\end{document}
