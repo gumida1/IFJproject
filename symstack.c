@@ -65,5 +65,9 @@ bool symstack_after_top_term(Symstack* stack, Prec_symbols symbol, Types type) {
     }
 }
 
-
+void symstack_pop_counter(Symstack* stack, int counter) {
+    for (int i = 0; i < counter; i++) {
+        symstack_pop(stack);
+    }
+}
 

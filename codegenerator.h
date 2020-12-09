@@ -56,6 +56,12 @@ void gen_else(char* id_func, int counter_label, int counter_label_depth);
 
 void gen_push_to_stack(Token token_stack);
 
-//void gen_math_operations(Prec_rules rule);
+void gen_math_operations(Prec_rules rule);
+
+void gen_concat_strs();
+
+void gen_retype_to_float_1();
+
+void gen_retype_to_float_2();
 
 #endif

@@ -119,6 +119,7 @@ void gen_head() {
     ADD_W_EOL("DEFVAR GF@?global_var");
     ADD_W_EOL("DEFVAR GF@?global_math_var1");
     ADD_W_EOL("DEFVAR GF@?global_math_var2");
+    ADD_W_EOL("DEFVAR GF@?global_math_var3");
     ADD_W_EOL("JUMP $$main");
 }
 
@@ -383,6 +384,23 @@ void gen_math_operations(Prec_rules rule) {
     default:
         break;
     }
+}
+
+void gen_concat_strs() {
+    ADD_W_EOL("POPS GF@?global_math_var3");
+    ADD_W_EOL("POPS GF@?global_math_var2");
+    ADD_W_EOL("CONCAT GF@?global_math_var1 GF@?global_math_var2 GF@?global_math_var3");
+    ADD_W_EOL("PUSHS GF@?global_math_var1");
+}
+
+void gen_retype_to_float_1() {
+    ADD_W_EOL("INT2FLOATS");
+}
+
+void gen_retype_to_float_2() {
+    ADD_W_EOL("POPS GF@?global_math_var1");
+    ADD_W_EOL("INT2FLOATS");
+    ADD_W_EOL("PUSHS GF@?global_math_var1");
 }
 
 /*

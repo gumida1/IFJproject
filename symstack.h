@@ -28,5 +28,7 @@ Symstack_item* symstack_top_term(Symstack* stack);
 
 bool symstack_after_top_term(Symstack* stack, Prec_symbols symbol, Types type);
 
+void symstack_pop_counter(Symstack* stack, int counter);
+
 #endif
 

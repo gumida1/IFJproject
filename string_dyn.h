@@ -18,8 +18,6 @@ void string_dyn_free(string_dyn *str);
 
 void string_dyn_add(string_dyn *str, const char *c_string);
 
-void string_add(char *str, const char *c_string);
-
 void string_dyn_add_char(string_dyn *str, char x);
 
 #endif

@@ -32,18 +32,6 @@ void string_dyn_add(string_dyn *str, const char *c_string) {
     str->string[str->size] = '\0';
 }
 
-//void string_add(char *str, const char *c_string) {
-//    size_t c_string_size = (size_t) strlen(c_string);
-//    if (str->size + c_string_size + 1 >= str->quantity) {
-//        size_t realloc_size = str->size + c_string_size + 1;
-//        str->string = (char *) realloc(str->string, realloc_size);
-//        str->quantity = realloc_size;
-//    }
-//    str->size = str->size + c_string_size;
-//    strcat(str->string, c_string);
-//    str->string[str->size] = '\0';
-//}
-
 //adds char to existing string
 void string_dyn_add_char(string_dyn *str, char x) {
     if (str->size + 1 >= str->quantity) {

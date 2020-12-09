@@ -15,7 +15,8 @@ typedef enum {
     RULE_M_EQUAL,
     RULE_LESS,
     RULE_MORE,
-    RULE_BRACKETS
+    RULE_BRACKETS,
+    N_RULE
 } Prec_rules;
 
 typedef enum {
