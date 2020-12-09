@@ -108,8 +108,15 @@ static Prec_index symbol_to_index(Prec_symbols symbol) {
 static Types get_t_data(Token *token) {
     switch (token->type) {
         case IDENTIFIER_VAR:
-            // stuff missing - provisionally
-            return T_UNDEF;
+            if (typeof(&token->attribute) == int) {
+                return T_INT;
+            } else if (typeof(&token->attribute) == double) {
+                return T_FLOAT;
+            } else if (typeof(&token->attribute) == char*) {
+                return T_STRING;
+            } else {
+                return T_UNDEF;
+            }
         case DATA_TYPE_INT:
             return T_INT;
         case DATA_TYPE_FLOAT64:

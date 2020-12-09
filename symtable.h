@@ -1,3 +1,5 @@
+#include "error.h"
+
 typedef enum {
     VARIABLE,
     FUNCTION

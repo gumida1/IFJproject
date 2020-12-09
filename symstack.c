@@ -63,6 +63,7 @@ bool symstack_after_top_term(Symstack* stack, Prec_symbols symbol, Types type) {
         prev = tmp;
         tmp = tmp->nextptr;
     }
+    return false;
 }
 
 void symstack_pop_counter(Symstack* stack, int counter) {
