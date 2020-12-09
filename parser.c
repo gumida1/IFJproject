@@ -114,6 +114,12 @@ int statement(Token *token) {
         CHECK_TOKEN_TYPE(END_OF_LINE);
         GET_TOKEN;
         return statement(token);
+    } else if (token->type == IDENTIFIER_FUNC) {
+        GET_TOKEN_AND_CHECK_TYPE(LEFT_PAREN);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(arg);
+        CHECK_TOKEN_TYPE(RIGHT_PAREN);
+        GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+        return statement(token);
     }
     return SYNTAX_OK;
 }
@@ -129,6 +135,7 @@ int id_statement_n(Token *token) {
     }
 }
 
+// OK
 int arg(Token *token) {
     if (token->type == DATA_TYPE_INT ||
         token->type == DATA_TYPE_FLOAT64 ||
@@ -141,6 +148,7 @@ int arg(Token *token) {
     return SYNTAX_OK;
 }
 
+// OK
 int arg_n(Token *token) {
     if (token->type == COMMA) {
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(val);
@@ -150,6 +158,7 @@ int arg_n(Token *token) {
     return SYNTAX_OK;
 }
 
+// OK
 int val(Token *token) {
     if (token->type == DATA_TYPE_INT ||
         token->type == DATA_TYPE_FLOAT64 ||
@@ -195,11 +204,13 @@ int diff_var(Token *token) {
     } else {
         JUMP_INTO_AND_CHECK_RES(id_statement_n);
         CHECK_TOKEN_TYPE(ASSIGN);
+        WHILE_END_OF_LINE;
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(type);
         return SYNTAX_OK;
     }
 }
 
+// OK
 int ret(Token *token) {
     if (token->type == DATA_TYPE_INT ||
         token->type == DATA_TYPE_FLOAT64 ||
@@ -212,6 +223,7 @@ int ret(Token *token) {
     return SYNTAX_OK;
 }
 
+// OK
 int ret_n(Token *token) {
     if (token->type == COMMA) {
         GET_TOKEN;
@@ -221,6 +233,7 @@ int ret_n(Token *token) {
 }
 
 int end(Token *token) {
+    WHILE_END_OF_LINE;
     CHECK_TOKEN_TYPE(END_OF_FILE_TOKEN);
     return SYNTAX_OK;
 }
