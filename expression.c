@@ -326,6 +326,7 @@ static int reduce(Token *token) {
 int expression(Token *token) {
     int finish = SYNTAX_ERROR;
     symstack_init(&stack);
+    symstack_push(&stack, SYMBOL_DOLLAR, T_UNDEF);
     bool succ = false;
     Symstack_item *top_terminal;
     Prec_symbols symb;
