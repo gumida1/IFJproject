@@ -1,3 +1,8 @@
+/*
+ * Syntakticka analyza
+ * Jan Fruhauf xfruha00
+ */
+
 #ifndef PARSER_H
 #define PARSER_H
 

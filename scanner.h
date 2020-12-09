@@ -1,3 +1,8 @@
+/*
+ * Lexikalni analyza
+ * Jan Fruhauf xfruha00
+ */
+
 #ifndef SCANNER_H
 #define SCANNER_H
 #include <ctype.h>
@@ -69,7 +74,7 @@ typedef enum {
 
 } Keyword;
 
-typedef union {
+typedef struct {
     double float64;
     int integer;
     Keyword keyword;
@@ -79,6 +84,7 @@ typedef union {
 typedef struct {
     Token_types type;
     Token_attribute attribute;
+    int arg_pass_pos;
 } Token;
 
 void setSourceFile(FILE *file);

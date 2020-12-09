@@ -1,5 +1,8 @@
+/*
+ * Zasobnik
+ * Jan Kleisl xkleis00
+ */
 #include "symstack.h"
-
 
 void symstack_init(Symstack* stack) {
     stack->top = NULL;

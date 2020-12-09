@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "test.h"
+#include "ifj20go.h"
 
 int main(int argc, char *argv[]) {
     (void) argc;
@@ -7,7 +7,13 @@ int main(int argc, char *argv[]) {
     FILE *f = fopen("/Users/list/Documents/frigi/ifj/examples/my.go", "r");
     setSourceFile(f);
     Token t;
-    return prog(&t);
+    t.arg_pass_pos = 0;
+    int x = prog(&t);
+    if (x == SYNTAX_OK) {
+        return 0;
+    } else {
+        return x;
+    }
 }
 
 void printToken(Token token) {

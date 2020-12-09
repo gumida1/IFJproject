@@ -1,3 +1,8 @@
+/*
+ * Syntakticka analyza
+ * Jan Fruhauf xfruha00
+ */
+
 #include "parser.h"
 
 // OK
@@ -23,10 +28,11 @@ int func(Token *token) {
         return func(token);
     } else if (token->type == KEYWORD && token->attribute.keyword == FUNC) {
         GET_TOKEN_AND_CHECK_TYPE(IDENTIFIER_FUNC);
-        if (!strcmp(token->attribute.string, "main")){
+        char *name = token->attribute.string;
+        if (!strcmp(name, "main")) {
             gen_main();
-        } else if (!strcmp(token->attribute.string, "main")) {
-
+        } else {
+            gen_func_start(token->attribute.string);
         }
         GET_TOKEN_AND_CHECK_TYPE(LEFT_PAREN);
         WHILE_END_OF_LINE;
@@ -45,6 +51,11 @@ int func(Token *token) {
         CHECK_TOKEN_TYPE(LEFT_BRACKET);
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(statement);
         CHECK_TOKEN_TYPE(RIGHT_BRACKET);
+        if (!strcmp(name, "main")) {
+            gen_main_end();
+        } else {
+            gen_func_end(token->attribute.string);
+        }
         return func(token);
     } else if (token->type == END_OF_FILE_TOKEN) {
         return end(token);
@@ -111,6 +122,7 @@ int statement(Token *token) {
         GET_TOKEN;
         return statement(token);
     } else if (token->type == IDENTIFIER_VAR) {
+        gen_var_declaration(token->attribute.string);
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(diff_var);
         CHECK_TOKEN_TYPE(END_OF_LINE);
         GET_TOKEN;
@@ -121,10 +133,13 @@ int statement(Token *token) {
         GET_TOKEN;
         return statement(token);
     } else if (token->type == IDENTIFIER_FUNC) {
+        char *name = token->attribute.string;
+        gen_func_call(name);
         GET_TOKEN_AND_CHECK_TYPE(LEFT_PAREN);
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(arg);
         CHECK_TOKEN_TYPE(RIGHT_PAREN);
         GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+        gen_func_ret(name);
         return statement(token);
     } else if (token->type == KEYWORD && token->attribute.keyword == IF) {
         GET_TOKEN;
@@ -188,7 +203,6 @@ int arg(Token *token) {
         token->type == DATA_TYPE_FLOAT64 ||
         token->type == DATA_TYPE_STRING ||
         token->type == IDENTIFIER_VAR) {
-        JUMP_INTO_AND_CHECK_RES(val);
         GET_TOKEN;
         return arg_n(token);
     }
@@ -199,9 +213,11 @@ int arg(Token *token) {
 int arg_n(Token *token) {
     if (token->type == COMMA) {
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(val);
+        gen_func_arg_pass(*token, token->arg_pass_pos++);
         GET_TOKEN;
         return arg_n(token);
     }
+    token->arg_pass_pos = 0;
     return SYNTAX_OK;
 }
 
@@ -211,7 +227,6 @@ int val(Token *token) {
         token->type == DATA_TYPE_FLOAT64 ||
         token->type == DATA_TYPE_STRING ||
         token->type == IDENTIFIER_VAR) {
-        JUMP_INTO_AND_CHECK_RES(expression);
         return SYNTAX_OK;
     }
     return SYNTAX_ERROR;
@@ -241,7 +256,6 @@ int type(Token *token) {
         token->type == DATA_TYPE_FLOAT64 ||
         token->type == DATA_TYPE_INT ||
         token->type == IDENTIFIER_VAR) {
-        printf("HERE\n");
         JUMP_INTO_AND_CHECK_RES(expression);
         return SYNTAX_OK;
     } else if (token->type == IDENTIFIER_FUNC) {
@@ -262,6 +276,18 @@ int type(Token *token) {
 int diff_var(Token *token) {
     if (token->type == DECLARE) {
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(type);
+        if (token->attribute.keyword == INT) {
+            int someInt = token->attribute.integer;
+            char str[12];
+            sprintf(str, "%d", someInt);
+            gen_var_default(str, T_INT);
+        } else if (token->attribute.keyword == FLOAT64) {
+            char str[21];
+            sprintf(str, "%f", token->attribute.float64);
+            gen_var_default(str, T_FLOAT);
+        } else if (token->attribute.keyword == STRING) {
+            gen_var_default(token->attribute.string, T_STRING);
+        }
         return SYNTAX_OK;
     } else {
         JUMP_INTO_AND_CHECK_RES(id_statement_n);
@@ -296,5 +322,6 @@ int ret_n(Token *token) {
 
 int end(Token *token) {
     CHECK_TOKEN_TYPE(END_OF_FILE_TOKEN);
+    generation();
     return SYNTAX_OK;
 }

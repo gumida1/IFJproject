@@ -1,9 +1,12 @@
+/*
+ * Tabulka symbolu (binarni strom)
+ * Prevzato z lonskeho projektu
+ */
+
+
 #include "symtable.h"
 
-
 #define NO_PARAM_COMPARISON 0
-
-
 
 void SymbolTableInit(tBSTNodePtr *RootPtr) {
     *RootPtr = NULL;

@@ -1,3 +1,8 @@
+/*
+ * Dynamicky string
+ * Jan Kleisl xkleis00
+ */
+
 #ifndef STRING_DYN_H
 #define STRING_DYN_H
 

@@ -6,10 +6,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o"
   "/Users/list/Documents/frigi/ifj/ifj-git/expression.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/expression.c.o"
+  "/Users/list/Documents/frigi/ifj/ifj-git/ifj20go.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o"
   "/Users/list/Documents/frigi/ifj/ifj-git/parser.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/parser.c.o"
   "/Users/list/Documents/frigi/ifj/ifj-git/scanner.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/scanner.c.o"
   "/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o"
-  "/Users/list/Documents/frigi/ifj/ifj-git/test.c" "/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles/IFJproject_CLion.dir/test.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

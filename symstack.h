@@ -1,3 +1,8 @@
+/*
+ * Zasobnik
+ * Jan Kleisl xkleis00
+ */
+
 #ifndef SYMSTACK_H
 #define SYMSTACK_H
 

@@ -1,3 +1,8 @@
+/*
+ * Lexikalni analyza
+ * Jan Fruhauf xfruha00
+ */
+
 #include "scanner.h"
 
 #define SCANNER_BLOCK_COMMENT 101
@@ -20,6 +25,7 @@ int getToken(Token *token) {
     token->type = END_OF_FILE;
     token->attribute.keyword = 0;
     int scanner_state = SCANNER_INIT;
+//    token->attribute.string = (char *)malloc(10);
     char c = 0;
     char tmp = 0;
     string_dyn string;
@@ -197,7 +203,7 @@ int getToken(Token *token) {
                         token->attribute.float64 = stringToFloat(string.string);
                     } else {
                         token->type = DATA_TYPE_INT;
-                        token->attribute.keyword = FLOAT64;
+                        token->attribute.keyword = INT;
                         token->attribute.integer = stringToInteger(string.string);
                     }
                     return SCANNER_OK;

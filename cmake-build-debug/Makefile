@@ -197,6 +197,33 @@ expression.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/expression.c.s
 .PHONY : expression.c.s
 
+ifj20go.o: ifj20go.c.o
+
+.PHONY : ifj20go.o
+
+# target to build an object file
+ifj20go.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o
+.PHONY : ifj20go.c.o
+
+ifj20go.i: ifj20go.c.i
+
+.PHONY : ifj20go.i
+
+# target to preprocess a source file
+ifj20go.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/ifj20go.c.i
+.PHONY : ifj20go.c.i
+
+ifj20go.s: ifj20go.c.s
+
+.PHONY : ifj20go.s
+
+# target to generate assembly for a file
+ifj20go.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/ifj20go.c.s
+.PHONY : ifj20go.c.s
+
 parser.o: parser.c.o
 
 .PHONY : parser.o
@@ -278,33 +305,6 @@ string_dyn.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string_dyn.c.s
 .PHONY : string_dyn.c.s
 
-test.o: test.c.o
-
-.PHONY : test.o
-
-# target to build an object file
-test.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/test.c.o
-.PHONY : test.c.o
-
-test.i: test.c.i
-
-.PHONY : test.i
-
-# target to preprocess a source file
-test.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/test.c.i
-.PHONY : test.c.i
-
-test.s: test.c.s
-
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/test.c.s
-.PHONY : test.c.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -320,6 +320,9 @@ help:
 	@echo "... expression.o"
 	@echo "... expression.i"
 	@echo "... expression.s"
+	@echo "... ifj20go.o"
+	@echo "... ifj20go.i"
+	@echo "... ifj20go.s"
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
@@ -329,9 +332,6 @@ help:
 	@echo "... string_dyn.o"
 	@echo "... string_dyn.i"
 	@echo "... string_dyn.s"
-	@echo "... test.o"
-	@echo "... test.i"
-	@echo "... test.s"
 .PHONY : help
 
 

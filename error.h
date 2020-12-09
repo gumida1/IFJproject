@@ -1,3 +1,8 @@
+/*
+ * Navratove kody
+ * Jan Fruhauf xfruha00
+ */
+
 #ifndef IFJPROJECT_CLION_ERROR_H
 #define IFJPROJECT_CLION_ERROR_H
 

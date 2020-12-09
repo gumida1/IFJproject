@@ -93,6 +93,12 @@
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/expression.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/ifj20go.c">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/ifj20go.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/parser.c">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
@@ -109,12 +115,6 @@
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h">
-			<Option target="IFJproject_CLion"/>
-		</Unit>
-		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/test.c">
-			<Option target="IFJproject_CLion"/>
-		</Unit>
-		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/test.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/CMakeLists.txt">

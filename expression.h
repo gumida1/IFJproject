@@ -1,3 +1,8 @@
+/*
+ * Vyhodnocovani vyrazu
+ * Jan Kleisl xkleis00
+ */
+
 #ifndef EXPRESSION_H
 #define EXPRESSION_H
 

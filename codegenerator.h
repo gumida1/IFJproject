@@ -1,3 +1,8 @@
+/*
+ * Generator kodu
+ * Jan Kleisl xkleis00
+ */
+
 #ifndef CODEGENERATOR_H
 #define CODEGENERATOR_H
 
@@ -24,9 +29,11 @@ void generation();
 
 void gen_main();
 
+void gen_main_end();
+
 void gen_func_start(char* id_func);
 
-void gen_func_end();
+void gen_func_end(char* id_func);
 
 void gen_func_call(char* id_func);
 

@@ -1,3 +1,8 @@
+/*
+ * Vyhodnocovani vyrazu
+ * Jan Kleisl xkleis00
+ */
+
 #include "expression.h"
 #include "symstack.c"
 
@@ -342,11 +347,11 @@ int expression(Token *token) {
                     EXTRA_RET(INTERN_ERROR);
                 }
                 symstack_push(&stack, symb, get_t_data(token));
-                if (symb == IDENTIFIER_VAR || symb == DATA_TYPE_INT || symb == DATA_TYPE_FLOAT64 ||
-                    symb == DATA_TYPE_STRING) {
+                if (symb == SYMBOL_IDENTIFIER || symb == SYMBOL_INT || symb == SYMBOL_FLOAT ||
+                    symb == SYMBOL_STRING) {
                     gen_push_to_stack(*token);
                 }
-                if ((finish = getToken(token))) {
+                if ((finish = getToken(token)) == SCANNER_ERROR) {
                     EXTRA_RET(finish);
                 }
                 break;
@@ -357,7 +362,7 @@ int expression(Token *token) {
                 }
                 break;
             case R:
-                if ((finish = reduce(token))) {
+                if ((finish = reduce(token)) != SYNTAX_ERROR) {
                     EXTRA_RET(finish);
                 }
                 break;

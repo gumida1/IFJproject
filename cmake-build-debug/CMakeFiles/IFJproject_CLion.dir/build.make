@@ -77,18 +77,18 @@ include CMakeFiles/IFJproject_CLion.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/IFJproject_CLion.dir/flags.make
 
-CMakeFiles/IFJproject_CLion.dir/test.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
-CMakeFiles/IFJproject_CLion.dir/test.c.o: ../test.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/IFJproject_CLion.dir/test.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/test.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/test.c
+CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
+CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o: ../ifj20go.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/ifj20go.c
 
-CMakeFiles/IFJproject_CLion.dir/test.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/test.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/test.c > CMakeFiles/IFJproject_CLion.dir/test.c.i
+CMakeFiles/IFJproject_CLion.dir/ifj20go.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/ifj20go.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/ifj20go.c > CMakeFiles/IFJproject_CLion.dir/ifj20go.c.i
 
-CMakeFiles/IFJproject_CLion.dir/test.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/test.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/test.c -o CMakeFiles/IFJproject_CLion.dir/test.c.s
+CMakeFiles/IFJproject_CLion.dir/ifj20go.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/ifj20go.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/ifj20go.c -o CMakeFiles/IFJproject_CLion.dir/ifj20go.c.s
 
 CMakeFiles/IFJproject_CLion.dir/scanner.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
 CMakeFiles/IFJproject_CLion.dir/scanner.c.o: ../scanner.c
@@ -157,7 +157,7 @@ CMakeFiles/IFJproject_CLion.dir/expression.c.s: cmake_force
 
 # Object files for target IFJproject_CLion
 IFJproject_CLion_OBJECTS = \
-"CMakeFiles/IFJproject_CLion.dir/test.c.o" \
+"CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o" \
 "CMakeFiles/IFJproject_CLion.dir/scanner.c.o" \
 "CMakeFiles/IFJproject_CLion.dir/parser.c.o" \
 "CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o" \
@@ -167,7 +167,7 @@ IFJproject_CLion_OBJECTS = \
 # External object files for target IFJproject_CLion
 IFJproject_CLion_EXTERNAL_OBJECTS =
 
-IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/test.c.o
+IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/ifj20go.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/scanner.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/parser.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o

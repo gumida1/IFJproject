@@ -1,3 +1,8 @@
+/*
+ * Generator kodu
+ * Jan Kleisl xkleis00
+ */
+
 #include "codegenerator.h"
 
 #define ADD(addition) string_dyn_add(&code_dest, addition)
@@ -12,96 +17,96 @@
 	} while (0)
 
 #define FUNC_INPUTS \
-"\n LABEL $inputs" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n READ LF@?ret string" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $inputs" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nREAD LF@?ret string" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_INPUTI \
-"\n LABEL $inputi" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n READ LF@?ret int" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $inputi" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nREAD LF@?ret int" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_INPUTF \
-"\n LABEL $inputf" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n READ LF@?ret float" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $inputf" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nREAD LF@?ret float" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_PRINT \
-"\n LABEL $print" \
-"\n PUSHFRAME" \
-"\n WRITE LF@?i" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $print" \
+"\nPUSHFRAME" \
+"\nWRITE LF@?i" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_INT2FLOAT \
-"\n LABEL $int2float" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n INT2FLOAT LF@?ret LF@?0" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $int2float" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nINT2FLOAT LF@?ret LF@?0" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_FLOAT2INT \
-"\n LABEL $float2int" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n FLOAT2INT LF@?ret LF@?0" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $float2int" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nFLOAT2INT LF@?ret LF@?0" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_LEN \
-"\n LABEL $len" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n STRLEN LF@?ret LF@?0" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $len" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nSTRLEN LF@?ret LF@?0" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_ORD \
-"\n LABEL $ord" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n MOVE LF@?ret int@0" \
-"\n DEFVAR LF@help1" \
-"\n LT LF@help1 LF@?1 int@0" \
-"\n JUMPIFEQ $ordret LF@help1 bool@true" \
-"\n DEFVAR LF@help2" \
-"\n CREATEFRAME" \
-"\n DEFVAR TF@?0" \
-"\n MOVE TF@?0 LF@?0" \
-"\n CALL $len" \
-"\n MOVE LF@help2 TF@?ret" \
-"\n GT LF@help1 LF@?1 LF@help2" \
-"\n JUMPIFEQ $ordret LF@help1 bool@true" \
-"\n SUB LF@?1 LF@?1 int@1" \
-"\n STRI2INT LF@?ret LF@?0 LF@?1" \
-"\n LABEL $ordret" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $ord" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nMOVE LF@?ret int@0" \
+"\nDEFVAR LF@help1" \
+"\nLT LF@help1 LF@?1 int@0" \
+"\nJUMPIFEQ $ordret LF@help1 bool@true" \
+"\nDEFVAR LF@help2" \
+"\nCREATEFRAME" \
+"\nDEFVAR TF@?0" \
+"\nMOVE TF@?0 LF@?0" \
+"\nCALL $len" \
+"\nMOVE LF@help2 TF@?ret" \
+"\nGT LF@help1 LF@?1 LF@help2" \
+"\nJUMPIFEQ $ordret LF@help1 bool@true" \
+"\nSUB LF@?1 LF@?1 int@1" \
+"\nSTRI2INT LF@?ret LF@?0 LF@?1" \
+"\nLABEL $ordret" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 #define FUNC_CHR \
-"\n LABEL $chr" \
-"\n PUSHFRAME" \
-"\n DEFVAR LF@?ret" \
-"\n MOVE LF@?ret string@" \
-"\n DEFVAR LF@help1" \
-"\n LT LF@help1 LF@?0 int@0" \
-"\n JUMPIFEQ $chrret LF@help1 bool@true" \
-"\n GT LF@help1 LF@?0 int@255" \
-"\n JUMPIFEQ $chrret LF@help1 bool@true" \
-"\n INT2CHAR LF@?ret LF@?0" \
-"\n LABEL $chrret" \
-"\n POPFRAME" \
-"\n RETURN"
+"\nLABEL $chr" \
+"\nPUSHFRAME" \
+"\nDEFVAR LF@?ret" \
+"\nMOVE LF@?ret string@" \
+"\nDEFVAR LF@help1" \
+"\nLT LF@help1 LF@?0 int@0" \
+"\nJUMPIFEQ $chrret LF@help1 bool@true" \
+"\nGT LF@help1 LF@?0 int@255" \
+"\nJUMPIFEQ $chrret LF@help1 bool@true" \
+"\nINT2CHAR LF@?ret LF@?0" \
+"\nLABEL $chrret" \
+"\nPOPFRAME" \
+"\nRETURN"
 
 /* 
 *
@@ -210,7 +215,7 @@ void gen_func_ret(char* id_func) {
     ADD_W_EOL("MOVE LF@?ret GF@?global_var");
     ADD("JUMP $");
     ADD(id_func);
-    ADD("?ret");
+    ADD_W_EOL("?ret");
 }
 
 void gen_token_val(Token token_val) {

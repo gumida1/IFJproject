@@ -1,3 +1,8 @@
+/*
+ * Tabulka symbolu (binarni strom)
+ * Prevzato z lonskeho projektu
+ */
+
 #include "error.h"
 
 typedef enum {
