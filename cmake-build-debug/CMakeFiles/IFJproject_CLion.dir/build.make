@@ -103,22 +103,9 @@ CMakeFiles/IFJproject_CLion.dir/scanner.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/scanner.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/scanner.c -o CMakeFiles/IFJproject_CLion.dir/scanner.c.s
 
-CMakeFiles/IFJproject_CLion.dir/string.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
-CMakeFiles/IFJproject_CLion.dir/string.c.o: ../string.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/IFJproject_CLion.dir/string.c.o"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/string.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/string.c
-
-CMakeFiles/IFJproject_CLion.dir/string.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/string.c.i"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/string.c > CMakeFiles/IFJproject_CLion.dir/string.c.i
-
-CMakeFiles/IFJproject_CLion.dir/string.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/string.c.s"
-	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/string.c -o CMakeFiles/IFJproject_CLion.dir/string.c.s
-
 CMakeFiles/IFJproject_CLion.dir/parser.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
 CMakeFiles/IFJproject_CLion.dir/parser.c.o: ../parser.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/IFJproject_CLion.dir/parser.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/IFJproject_CLion.dir/parser.c.o"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/parser.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/parser.c
 
 CMakeFiles/IFJproject_CLion.dir/parser.c.i: cmake_force
@@ -129,23 +116,66 @@ CMakeFiles/IFJproject_CLion.dir/parser.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/parser.c.s"
 	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/parser.c -o CMakeFiles/IFJproject_CLion.dir/parser.c.s
 
+CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
+CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o: ../codegenerator.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c
+
+CMakeFiles/IFJproject_CLion.dir/codegenerator.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/codegenerator.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c > CMakeFiles/IFJproject_CLion.dir/codegenerator.c.i
+
+CMakeFiles/IFJproject_CLion.dir/codegenerator.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/codegenerator.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c -o CMakeFiles/IFJproject_CLion.dir/codegenerator.c.s
+
+CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
+CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o: ../string_dyn.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/string_dyn.c
+
+CMakeFiles/IFJproject_CLion.dir/string_dyn.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/string_dyn.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/string_dyn.c > CMakeFiles/IFJproject_CLion.dir/string_dyn.c.i
+
+CMakeFiles/IFJproject_CLion.dir/string_dyn.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/string_dyn.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/string_dyn.c -o CMakeFiles/IFJproject_CLion.dir/string_dyn.c.s
+
+CMakeFiles/IFJproject_CLion.dir/expression.c.o: CMakeFiles/IFJproject_CLion.dir/flags.make
+CMakeFiles/IFJproject_CLion.dir/expression.c.o: ../expression.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/IFJproject_CLion.dir/expression.c.o"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IFJproject_CLion.dir/expression.c.o   -c /Users/list/Documents/frigi/ifj/ifj-git/expression.c
+
+CMakeFiles/IFJproject_CLion.dir/expression.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IFJproject_CLion.dir/expression.c.i"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/list/Documents/frigi/ifj/ifj-git/expression.c > CMakeFiles/IFJproject_CLion.dir/expression.c.i
+
+CMakeFiles/IFJproject_CLion.dir/expression.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IFJproject_CLion.dir/expression.c.s"
+	/Library/Developer/CommandLineTools/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/list/Documents/frigi/ifj/ifj-git/expression.c -o CMakeFiles/IFJproject_CLion.dir/expression.c.s
+
 # Object files for target IFJproject_CLion
 IFJproject_CLion_OBJECTS = \
 "CMakeFiles/IFJproject_CLion.dir/test.c.o" \
 "CMakeFiles/IFJproject_CLion.dir/scanner.c.o" \
-"CMakeFiles/IFJproject_CLion.dir/string.c.o" \
-"CMakeFiles/IFJproject_CLion.dir/parser.c.o"
+"CMakeFiles/IFJproject_CLion.dir/parser.c.o" \
+"CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o" \
+"CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o" \
+"CMakeFiles/IFJproject_CLion.dir/expression.c.o"
 
 # External object files for target IFJproject_CLion
 IFJproject_CLion_EXTERNAL_OBJECTS =
 
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/test.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/scanner.c.o
-IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/string.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/parser.c.o
+IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o
+IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o
+IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/expression.c.o
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/build.make
 IFJproject_CLion: CMakeFiles/IFJproject_CLion.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable IFJproject_CLion"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/list/Documents/frigi/ifj/ifj-git/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable IFJproject_CLion"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IFJproject_CLion.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

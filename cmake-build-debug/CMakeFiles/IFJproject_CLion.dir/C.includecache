@@ -6,19 +6,47 @@
 
 #IncludeRegexTransform: 
 
+/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c
+codegenerator.h
+/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.h
+scanner.h
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+expression.h
+/Users/list/Documents/frigi/ifj/ifj-git/expression.h
+
 /Users/list/Documents/frigi/ifj/ifj-git/error.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/expression.c
+expression.h
+/Users/list/Documents/frigi/ifj/ifj-git/expression.h
+symstack.c
+/Users/list/Documents/frigi/ifj/ifj-git/symstack.c
+
+/Users/list/Documents/frigi/ifj/ifj-git/expression.h
+scanner.h
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
 
 /Users/list/Documents/frigi/ifj/ifj-git/parser.c
 parser.h
 /Users/list/Documents/frigi/ifj/ifj-git/parser.h
 
 /Users/list/Documents/frigi/ifj/ifj-git/parser.h
-stdbool.h
--
 scanner.h
 /Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+string_dyn.h
+/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h
 error.h
 /Users/list/Documents/frigi/ifj/ifj-git/error.h
+symtable.h
+/Users/list/Documents/frigi/ifj/ifj-git/symtable.h
+expression.h
+/Users/list/Documents/frigi/ifj/ifj-git/expression.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.c
+scanner.h
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
 
 /Users/list/Documents/frigi/ifj/ifj-git/scanner.h
 ctype.h
@@ -29,16 +57,40 @@ stdlib.h
 -
 stdbool.h
 -
+string.h
+-
 math.h
 -
-string.h
-/Users/list/Documents/frigi/ifj/ifj-git/string.h
+string_dyn.h
+/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h
 error.h
 /Users/list/Documents/frigi/ifj/ifj-git/error.h
 
-/Users/list/Documents/frigi/ifj/ifj-git/string.h
+/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h
 stdlib.h
 -
 string.h
 -
+
+/Users/list/Documents/frigi/ifj/ifj-git/symstack.c
+symstack.h
+/Users/list/Documents/frigi/ifj/ifj-git/symstack.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/symstack.h
+expression.h
+/Users/list/Documents/frigi/ifj/ifj-git/expression.h
+codegenerator.h
+/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/symtable.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/test.c
+test.h
+/Users/list/Documents/frigi/ifj/ifj-git/test.h
+stdio.h
+-
+
+/Users/list/Documents/frigi/ifj/ifj-git/test.h
+parser.h
+/Users/list/Documents/frigi/ifj/ifj-git/parser.h
 

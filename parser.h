@@ -1,10 +1,12 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include <stdbool.h>
 #include "scanner.h"
+#include "string_dyn.h"
 #include "error.h"
-
+#include "symtable.h"
+//#include "codegenerator.h"
+#include "expression.h"
 
 #define GET_TOKEN \
 if (getToken(token) != SCANNER_OK) return SCANNER_ERROR;
@@ -29,7 +31,6 @@ while(token->type == END_OF_LINE) { \
 }
 
 int analyse_signatures();
-
 int prog(Token *token);
 int scope(Token *token);
 int func_main(Token *token);
@@ -52,7 +53,5 @@ int ret(Token *token);
 int ret_n(Token *token);
 int end(Token *token);
 int types_multi(Token *token);
-
-int expression(Token *token);
 
 #endif

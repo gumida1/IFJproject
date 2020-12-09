@@ -143,6 +143,60 @@ IFJproject_CLion/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/build
 .PHONY : IFJproject_CLion/fast
 
+codegenerator.o: codegenerator.c.o
+
+.PHONY : codegenerator.o
+
+# target to build an object file
+codegenerator.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/codegenerator.c.o
+.PHONY : codegenerator.c.o
+
+codegenerator.i: codegenerator.c.i
+
+.PHONY : codegenerator.i
+
+# target to preprocess a source file
+codegenerator.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/codegenerator.c.i
+.PHONY : codegenerator.c.i
+
+codegenerator.s: codegenerator.c.s
+
+.PHONY : codegenerator.s
+
+# target to generate assembly for a file
+codegenerator.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/codegenerator.c.s
+.PHONY : codegenerator.c.s
+
+expression.o: expression.c.o
+
+.PHONY : expression.o
+
+# target to build an object file
+expression.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/expression.c.o
+.PHONY : expression.c.o
+
+expression.i: expression.c.i
+
+.PHONY : expression.i
+
+# target to preprocess a source file
+expression.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/expression.c.i
+.PHONY : expression.c.i
+
+expression.s: expression.c.s
+
+.PHONY : expression.s
+
+# target to generate assembly for a file
+expression.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/expression.c.s
+.PHONY : expression.c.s
+
 parser.o: parser.c.o
 
 .PHONY : parser.o
@@ -197,32 +251,32 @@ scanner.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/scanner.c.s
 .PHONY : scanner.c.s
 
-string.o: string.c.o
+string_dyn.o: string_dyn.c.o
 
-.PHONY : string.o
+.PHONY : string_dyn.o
 
 # target to build an object file
-string.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.o
-.PHONY : string.c.o
+string_dyn.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o
+.PHONY : string_dyn.c.o
 
-string.i: string.c.i
+string_dyn.i: string_dyn.c.i
 
-.PHONY : string.i
+.PHONY : string_dyn.i
 
 # target to preprocess a source file
-string.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.i
-.PHONY : string.c.i
+string_dyn.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string_dyn.c.i
+.PHONY : string_dyn.c.i
 
-string.s: string.c.s
+string_dyn.s: string_dyn.c.s
 
-.PHONY : string.s
+.PHONY : string_dyn.s
 
 # target to generate assembly for a file
-string.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string.c.s
-.PHONY : string.c.s
+string_dyn.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/IFJproject_CLion.dir/build.make CMakeFiles/IFJproject_CLion.dir/string_dyn.c.s
+.PHONY : string_dyn.c.s
 
 test.o: test.c.o
 
@@ -260,15 +314,21 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... IFJproject_CLion"
+	@echo "... codegenerator.o"
+	@echo "... codegenerator.i"
+	@echo "... codegenerator.s"
+	@echo "... expression.o"
+	@echo "... expression.i"
+	@echo "... expression.s"
 	@echo "... parser.o"
 	@echo "... parser.i"
 	@echo "... parser.s"
 	@echo "... scanner.o"
 	@echo "... scanner.i"
 	@echo "... scanner.s"
-	@echo "... string.o"
-	@echo "... string.i"
-	@echo "... string.s"
+	@echo "... string_dyn.o"
+	@echo "... string_dyn.i"
+	@echo "... string_dyn.s"
 	@echo "... test.o"
 	@echo "... test.i"
 	@echo "... test.s"

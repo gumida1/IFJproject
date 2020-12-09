@@ -1,8 +1,6 @@
-#include <stdbool.h>
 #include "symtable.h"
-#include "error.h"
-#include "scanner.h"
 
+///SJEDNOTIT ERROR VÝSTUPY
 
 void SymbolTableInit(tBSTNodePtr *RootPtr) {
     *RootPtr = NULL;
@@ -109,4 +107,4 @@ void SymbolTableDispose(tBSTNodePtr *RootPtr) {
     *RootPtr = NULL;
 }
 
-/* konec c401.c */
+

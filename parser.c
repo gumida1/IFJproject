@@ -1,5 +1,6 @@
 #include "parser.h"
 
+
 // OK
 int prog(Token *token) {
     GET_TOKEN;
@@ -222,10 +223,5 @@ int ret_n(Token *token) {
 
 int end(Token *token) {
     CHECK_TOKEN_TYPE(END_OF_FILE_TOKEN);
-    return SYNTAX_OK;
-}
-
-int expression(Token *token) {
-    GET_TOKEN;
     return SYNTAX_OK;
 }

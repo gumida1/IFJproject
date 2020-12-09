@@ -21,7 +21,8 @@ int getToken(Token *token) {
     int scanner_state = SCANNER_INIT;
     char c = 0;
     char tmp = 0;
-    char *string = initString();
+    string_dyn *string;
+    string_dyn_init(string, 100);
     while (1) {
         c = (char) getc(source_file);
         switch (scanner_state) {
@@ -45,7 +46,7 @@ int getToken(Token *token) {
 
             case SCANNER_IDENTIFIER_KEYWORD: // DONE
                 while (c == '_' || isalpha(c) || isdigit(c)) {
-                    appendCharToString(c, string);
+                    string_dyn_add_char(string, c);
                     c = getc(source_file);
                 }
                 Keyword keyword = isKeyword(string);
@@ -58,7 +59,7 @@ int getToken(Token *token) {
                     } else {
                         token->type = IDENTIFIER_VAR;
                     }
-                    token->attribute.string = string;
+                    token->attribute.string = string->string;
                 }
                 ungetc(c, source_file);
                 return SCANNER_OK;
@@ -79,7 +80,7 @@ int getToken(Token *token) {
                     ungetc(c, source_file);
                     scanner_state = SCANNER_SYMBOL;
                 } else if (c == '_' || isalpha(c)) {
-                    appendCharToString(c, string);
+                    string_dyn_add_char(string, c);
                     scanner_state = SCANNER_IDENTIFIER_KEYWORD;
                 } else if (c >= 48 && c <= 57) {
                     ungetc(c, source_file);
@@ -111,38 +112,38 @@ int getToken(Token *token) {
                 if (c == 48) {
                     tmp = getc(source_file);
                     if (tmp == '.') {
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                         ungetc(tmp, source_file);
                     } else {
                         ungetc(tmp, source_file);
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                         token->type = DATA_TYPE_INT;
-                        token->attribute.integer = stringToInteger(string);
+                        token->attribute.integer = stringToInteger(string->string);
                         return SCANNER_OK;
                     }
                 } else {
                     // Begin of 1
                     while (isdigit(c)) {
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                         c = getc(source_file);
                     }
                     bool dec = false;
                     if (c == '.') {
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                         c = getc(source_file);
                         while (isdigit(c)) {
-                            appendCharToString(c, string);
+                            string_dyn_add_char(string, c);
                             c = getc(source_file);
                         }
                         dec = true;
                     }
                     if (c == 'e' || c == 'E') {
                         // Begin of 2
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                         c = getc(source_file);
                         bool op = false;
                         if (c == '+' || c == '-') {
-                            appendCharToString(c, string);
+                            string_dyn_add_char(string, c);
                             c = getc(source_file);
                             op = true;
                         }
@@ -153,29 +154,29 @@ int getToken(Token *token) {
                             } else if (c > 48 && c <= 57) {
                                 break;
                             } else {
-                                appendCharToString(0, string);
+                                string_dyn_add_char(string, 0);
                                 token->type = DATA_TYPE_FLOAT64;
-                                token->attribute.float64 = exponentionalNumToFloat(string);
+                                token->attribute.float64 = exponentionalNumToFloat(string->string);
                                 return SCANNER_OK;
                             }
                         }
                         if (c > 48 && c <= 57) {
-                            appendCharToString(c, string);
+                            string_dyn_add_char(string, c);
                             c = getc(source_file);
                             while (isdigit(c)) {
-                                appendCharToString(c, string);
+                                string_dyn_add_char(string, c);
                                 c = getc(source_file);
                             }
                             ungetc(c, source_file);
                             //result
                             token->type = DATA_TYPE_FLOAT64;
-                            token->attribute.float64 = exponentionalNumToFloat(string);
+                            token->attribute.float64 = exponentionalNumToFloat(string->string);
                             return SCANNER_OK;
                         } else {
                             ungetc(c, source_file);
-                            if (op && isdigit(string[strlen(string)])) {
+                            if (op && isdigit(string->string[strlen(string->string)])) {
                                 token->type = DATA_TYPE_FLOAT64;
-                                token->attribute.float64 = exponentionalNumToFloat(string);
+                                token->attribute.float64 = exponentionalNumToFloat(string->string);
                                 return SCANNER_OK;
                             } else {
                                 return SCANNER_ERROR;
@@ -186,10 +187,10 @@ int getToken(Token *token) {
                     ungetc(c, source_file);
                     if (dec) {
                         token->type = DATA_TYPE_FLOAT64;
-                        token->attribute.float64 = stringToFloat(string);
+                        token->attribute.float64 = stringToFloat(string->string);
                     } else {
                         token->type = DATA_TYPE_INT;
-                        token->attribute.integer = stringToInteger(string);
+                        token->attribute.integer = stringToInteger(string->string);
                     }
                     return SCANNER_OK;
                     // End of 1
@@ -267,10 +268,10 @@ int getToken(Token *token) {
                                 char first = c;
                                 if (isdigit(c) || (c >= 'A' && c <= 'F') ||
                                     (c >= 'a' && c <= 'f')) {
-                                    appendCharToString(0x5c, string);
-                                    appendCharToString('x', string);
-                                    appendCharToString(first, string);
-                                    appendCharToString(c, string);
+                                    string_dyn_add_char(string, 0x5c);
+                                    string_dyn_add_char(string, 'x');
+                                    string_dyn_add_char(string, first);
+                                    string_dyn_add_char(string, c);
                                 } else {
                                     return SCANNER_ERROR;
                                 }
@@ -279,20 +280,20 @@ int getToken(Token *token) {
                             }
                         } else if (c == '"' || c == 'n' || c == 't' ||
                                    c == '\\') {
-                            appendCharToString(0x5c, string);
-                            appendCharToString(c, string);
+                            string_dyn_add_char(string, 0x5c);
+                            string_dyn_add_char(string, c);
                         } else {
                             return SCANNER_ERROR;
                         }
                     } else if (c > 31) {
-                        appendCharToString(c, string);
+                        string_dyn_add_char(string, c);
                     } else {
                         return SCANNER_ERROR;
                     }
                     c = getc(source_file);
                 }
                 token->type = DATA_TYPE_STRING;
-                token->attribute.string = string;
+                token->attribute.string = string->string;
                 return SCANNER_OK;
 
             case SCANNER_SYMBOL: // DONE
@@ -329,24 +330,24 @@ int getToken(Token *token) {
     return 0;
 }
 
-int isKeyword(char *string) {
-    if (strcmp(string, "else") == 0) {
+int isKeyword(string_dyn *string) {
+    if (strcmp(string->string, "else") == 0) {
         return ELSE;
-    } else if (strcmp(string, "float64") == 0) {
+    } else if (strcmp(string->string, "float64") == 0) {
         return FLOAT64;
-    } else if (strcmp(string, "for") == 0) {
+    } else if (strcmp(string->string, "for") == 0) {
         return FOR;
-    } else if (strcmp(string, "func") == 0) {
+    } else if (strcmp(string->string, "func") == 0) {
         return FUNC;
-    } else if (strcmp(string, "if") == 0) {
+    } else if (strcmp(string->string, "if") == 0) {
         return IF;
-    } else if (strcmp(string, "int") == 0) {
+    } else if (strcmp(string->string, "int") == 0) {
         return INT;
-    } else if (strcmp(string, "package") == 0) {
+    } else if (strcmp(string->string, "package") == 0) {
         return PACKAGE;
-    } else if (strcmp(string, "return") == 0) {
+    } else if (strcmp(string->string, "return") == 0) {
         return RETURN;
-    } else if (strcmp(string, "string") == 0) {
+    } else if (strcmp(string->string, "string") == 0) {
         return STRING;
     } else {
         return 0;

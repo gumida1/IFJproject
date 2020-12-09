@@ -1,9 +1,12 @@
+#ifndef SCANNER_H
+#define SCANNER_H
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 #include <math.h>
-#include "string.h"
+#include "string_dyn.h"
 #include "error.h"
 
 typedef enum {
@@ -80,7 +83,7 @@ typedef struct {
 
 void setSourceFile(FILE *file);
 
-int isKeyword(char *string);
+int isKeyword(string_dyn *string);
 
 int getToken(Token *token);
 
@@ -89,3 +92,4 @@ int stringToInteger(char *string);
 float stringToFloat(char *string);
 
 float exponentionalNumToFloat(char *string);
+#endif

@@ -78,7 +78,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.c">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/codegenerator.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/error.h">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/expression.c">
+			<Option target="IFJproject_CLion"/>
+		</Unit>
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/expression.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/parser.c">
@@ -93,10 +105,10 @@
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/scanner.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
-		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string.c">
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.c">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
-		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string.h">
+		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h">
 			<Option target="IFJproject_CLion"/>
 		</Unit>
 		<Unit filename="/Users/list/Documents/frigi/ifj/ifj-git/test.c">
