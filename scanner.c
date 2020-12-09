@@ -48,15 +48,19 @@ int getToken(Token *token) {
                     appendCharToString(c, string);
                     c = getc(source_file);
                 }
-                ungetc(c, source_file);
                 Keyword keyword = isKeyword(string);
                 if (keyword != 0) {
                     token->type = KEYWORD;
                     token->attribute.keyword = keyword;
                 } else {
-                    token->type = IDENTIFIER;
+                    if (c == '('){
+                        token->type = IDENTIFIER_FUNC;
+                    } else {
+                        token->type = IDENTIFIER_VAR;
+                    }
                     token->attribute.string = string;
                 }
+                ungetc(c, source_file);
                 return SCANNER_OK;
 
             case SCANNER_INIT:
@@ -87,6 +91,9 @@ int getToken(Token *token) {
                     return SCANNER_OK;
                 } else if (isspace(c)) {
                     break;
+                } else if (c == EOF) {
+                    token->type = END_OF_FILE_TOKEN;
+                    return SCANNER_OK;
                 } else {
                     return SCANNER_ERROR;
                 }

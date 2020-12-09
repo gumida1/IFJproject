@@ -13,7 +13,8 @@ typedef enum {
     DATA_TYPE_STRING,
 
     // Words
-    IDENTIFIER,
+    IDENTIFIER_FUNC,
+    IDENTIFIER_VAR,
     KEYWORD,
 
     // Operators
@@ -47,6 +48,9 @@ typedef enum {
     RIGHT_PAREN,          // )
     SEMICOLON,            // ;
     UNDERLINE,            // _
+
+    //End of file
+    END_OF_FILE_TOKEN,
 } Token_types;
 
 typedef enum {

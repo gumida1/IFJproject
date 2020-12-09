@@ -23,7 +23,16 @@ if (_function(token) != SYNTAX_OK) return SYNTAX_ERROR;
 GET_TOKEN; \
 JUMP_INTO_AND_CHECK_RES(_function);
 
+#define WHILE_END_OF_LINE \
+while(token->type == END_OF_LINE) { \
+    GET_TOKEN; \
+}
+
+int analyse_signatures();
+
 int prog(Token *token);
+int scope(Token *token);
+int func_main(Token *token);
 int func(Token *token);
 int type(Token *token);
 int params_in(Token *token);
@@ -35,10 +44,15 @@ int id_statement_n(Token *token);
 int arg(Token *token);
 int arg_n(Token *token);
 int var(Token *token);
+int val(Token *token);
 int def_var(Token *token);
 int for_3(Token *token);
 int diff_var(Token *token);
 int ret(Token *token);
 int ret_n(Token *token);
+int end(Token *token);
+int types_multi(Token *token);
+
+int expression(Token *token);
 
 #endif

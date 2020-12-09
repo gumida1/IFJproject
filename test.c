@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 int main(int argc, char *argv[]) {
-    (void)argc;
-    (void)argv;
-    FILE *f = fopen("/Users/list/Documents/frigi/ifj/IFJproject-CLion/tests/varfun.go", "r");
+    (void) argc;
+    (void) argv;
+    FILE *f = fopen("/Users/list/Documents/frigi/ifj/examples/varfun.go", "r");
     setSourceFile(f);
-    Token *t = (Token *)malloc(sizeof(Token));
+    Token *t = (Token *) malloc(sizeof(Token));
     return prog(t);
 }
 
@@ -21,8 +21,11 @@ void printToken(Token token) {
         case DATA_TYPE_STRING:
             printf("DATA_TYPE_STRING: %s\n", token.attribute.string);
             break;
-        case IDENTIFIER:
-            printf("IDENTIFIER: %s\n", token.attribute.string);
+        case IDENTIFIER_FUNC:
+            printf("IDENTIFIER_FUNC: %s\n", token.attribute.string);
+            break;
+        case IDENTIFIER_VAR:
+            printf("IDENTIFIER_VAR: %s\n", token.attribute.string);
             break;
         case KEYWORD:
             switch (token.attribute.keyword) {
@@ -128,6 +131,9 @@ void printToken(Token token) {
             break;
         case UNDERLINE:
             printf("UNDERLINE\n");
+            break;
+        case END_OF_FILE_TOKEN:
+            printf("END_OF_FILE_TOKEN\n");
             break;
         default:
             printf("Print error\n");
