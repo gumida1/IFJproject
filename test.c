@@ -6,8 +6,8 @@ int main(int argc, char *argv[]) {
     (void) argv;
     FILE *f = fopen("/Users/list/Documents/frigi/ifj/examples/varfun.go", "r");
     setSourceFile(f);
-    Token *t = (Token *) malloc(sizeof(Token));
-    return prog(t);
+    Token t;
+    return prog(&t);
 }
 
 void printToken(Token token) {

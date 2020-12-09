@@ -1,6 +1,5 @@
 #include "parser.h"
 
-
 // OK
 int prog(Token *token) {
     GET_TOKEN;

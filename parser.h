@@ -5,7 +5,6 @@
 #include "string_dyn.h"
 #include "error.h"
 #include "symtable.h"
-//#include "codegenerator.h"
 #include "expression.h"
 
 #define GET_TOKEN \
