@@ -1,10 +1,10 @@
-#include "test.h"
 #include <stdio.h>
+#include "test.h"
 
 int main(int argc, char *argv[]) {
     (void) argc;
     (void) argv;
-    FILE *f = fopen("/Users/list/Documents/frigi/ifj/examples/varfun.go", "r");
+    FILE *f = fopen("/Users/list/Documents/frigi/ifj/examples/my.go", "r");
     setSourceFile(f);
     Token t;
     return prog(&t);

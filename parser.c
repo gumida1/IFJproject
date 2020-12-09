@@ -8,6 +8,7 @@ int prog(Token *token) {
     } else if (token->type == KEYWORD && token->attribute.keyword == PACKAGE) {
         GET_TOKEN_AND_CHECK_TYPE(IDENTIFIER_VAR);
         if (!strcmp(token->attribute.string, "main")) {
+            gen_start();
             return func(token);
         }
         return SYNTAX_ERROR;
@@ -22,6 +23,11 @@ int func(Token *token) {
         return func(token);
     } else if (token->type == KEYWORD && token->attribute.keyword == FUNC) {
         GET_TOKEN_AND_CHECK_TYPE(IDENTIFIER_FUNC);
+        if (!strcmp(token->attribute.string, "main")){
+            gen_main();
+        } else if (!strcmp(token->attribute.string, "main")) {
+
+        }
         GET_TOKEN_AND_CHECK_TYPE(LEFT_PAREN);
         WHILE_END_OF_LINE;
         GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(params_in);
@@ -120,6 +126,47 @@ int statement(Token *token) {
         CHECK_TOKEN_TYPE(RIGHT_PAREN);
         GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
         return statement(token);
+    } else if (token->type == KEYWORD && token->attribute.keyword == IF) {
+        GET_TOKEN;
+        if (token->type == LEFT_PAREN) {
+            GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(expression);
+            CHECK_TOKEN_TYPE(RIGHT_PAREN);
+            GET_TOKEN;
+        } else {
+            GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(expression);
+        }
+        CHECK_TOKEN_TYPE(LEFT_BRACKET);
+        GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(statement);
+        CHECK_TOKEN_TYPE(END_OF_LINE);
+        GET_TOKEN_AND_CHECK_TYPE(RIGHT_BRACKET);
+        GET_TOKEN;
+        if (token->type == KEYWORD && token->attribute.keyword == ELSE) {
+             GET_TOKEN_AND_CHECK_TYPE(LEFT_BRACKET);
+             GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+             GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(statement);
+             GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+             GET_TOKEN_AND_CHECK_TYPE(RIGHT_BRACKET);
+             GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+             GET_TOKEN;
+            return statement(token);
+        } else {
+            return SYNTAX_ERROR;
+        }
+    } else if (token->type == KEYWORD && token->attribute.keyword == FOR) {
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(def_var);
+        CHECK_TOKEN_TYPE(SEMICOLON);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(expression);
+        CHECK_TOKEN_TYPE(SEMICOLON);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(for_3);
+        CHECK_TOKEN_TYPE(LEFT_BRACKET);
+        GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(statement);
+        CHECK_TOKEN_TYPE(END_OF_LINE);
+        GET_TOKEN_AND_CHECK_TYPE(RIGHT_BRACKET);
+        GET_TOKEN_AND_CHECK_TYPE(END_OF_LINE);
+        GET_TOKEN;
+        return statement(token);
     }
     return SYNTAX_OK;
 }
@@ -170,9 +217,23 @@ int val(Token *token) {
     return SYNTAX_ERROR;
 }
 
-int def_var(Token *token) {}
+// OK
+int def_var(Token *token) {
+    if (token->type == IDENTIFIER_VAR) {
+        GET_TOKEN_AND_CHECK_TYPE(DECLARE);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(expression);
+    }
+    return SYNTAX_OK;
+}
 
-int for_3(Token *token) {}
+// OK
+int for_3(Token *token) {
+    if (token->type == IDENTIFIER_VAR) {
+        GET_TOKEN_AND_CHECK_TYPE(ASSIGN);
+        GET_TOKEN_AND_JUMP_INTO_AND_CHECK_RES(expression);
+    }
+    return SYNTAX_OK;
+}
 
 // OK
 int type(Token *token) {
@@ -180,6 +241,7 @@ int type(Token *token) {
         token->type == DATA_TYPE_FLOAT64 ||
         token->type == DATA_TYPE_INT ||
         token->type == IDENTIFIER_VAR) {
+        printf("HERE\n");
         JUMP_INTO_AND_CHECK_RES(expression);
         return SYNTAX_OK;
     } else if (token->type == IDENTIFIER_FUNC) {
@@ -233,7 +295,6 @@ int ret_n(Token *token) {
 }
 
 int end(Token *token) {
-    WHILE_END_OF_LINE;
     CHECK_TOKEN_TYPE(END_OF_FILE_TOKEN);
     return SYNTAX_OK;
 }

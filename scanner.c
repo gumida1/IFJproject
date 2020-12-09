@@ -18,6 +18,7 @@ void setSourceFile(FILE *file) { source_file = file; }
 
 int getToken(Token *token) {
     token->type = END_OF_FILE;
+    token->attribute.keyword = 0;
     int scanner_state = SCANNER_INIT;
     char c = 0;
     char tmp = 0;
@@ -58,6 +59,7 @@ int getToken(Token *token) {
                         token->type = IDENTIFIER_FUNC;
                     } else {
                         token->type = IDENTIFIER_VAR;
+                        token->attribute.keyword = STRING;
                     }
                     token->attribute.string = string.string;
                 }
@@ -108,7 +110,7 @@ int getToken(Token *token) {
                 scanner_state = SCANNER_INIT;
                 break;
 
-            case SCANNER_NUMBER: // TODO
+            case SCANNER_NUMBER:
                 if (c == 48) {
                     tmp = getc(source_file);
                     if (tmp == '.') {
@@ -118,6 +120,7 @@ int getToken(Token *token) {
                         ungetc(tmp, source_file);
                         string_dyn_add_char(&string, c);
                         token->type = DATA_TYPE_INT;
+                        token->attribute.keyword = INT;
                         token->attribute.integer = stringToInteger(string.string);
                         return SCANNER_OK;
                     }
@@ -156,6 +159,7 @@ int getToken(Token *token) {
                             } else {
                                 string_dyn_add_char(&string, 0);
                                 token->type = DATA_TYPE_FLOAT64;
+                                token->attribute.keyword = FLOAT64;
                                 token->attribute.float64 = exponentionalNumToFloat(string.string);
                                 return SCANNER_OK;
                             }
@@ -170,12 +174,14 @@ int getToken(Token *token) {
                             ungetc(c, source_file);
                             //result
                             token->type = DATA_TYPE_FLOAT64;
+                            token->attribute.keyword = FLOAT64;
                             token->attribute.float64 = exponentionalNumToFloat(string.string);
                             return SCANNER_OK;
                         } else {
                             ungetc(c, source_file);
                             if (op && isdigit(string.string[strlen(string.string)])) {
                                 token->type = DATA_TYPE_FLOAT64;
+                                token->attribute.keyword = FLOAT64;
                                 token->attribute.float64 = exponentionalNumToFloat(string.string);
                                 return SCANNER_OK;
                             } else {
@@ -187,9 +193,11 @@ int getToken(Token *token) {
                     ungetc(c, source_file);
                     if (dec) {
                         token->type = DATA_TYPE_FLOAT64;
+                        token->attribute.keyword = FLOAT64;
                         token->attribute.float64 = stringToFloat(string.string);
                     } else {
                         token->type = DATA_TYPE_INT;
+                        token->attribute.keyword = FLOAT64;
                         token->attribute.integer = stringToInteger(string.string);
                     }
                     return SCANNER_OK;
@@ -322,8 +330,12 @@ int getToken(Token *token) {
                     case ';':
                         token->type = SEMICOLON;
                         break;
+                    default:
+                        return SCANNER_ERROR;
                 }
                 return SCANNER_OK;
+            default:
+                return SCANNER_ERROR;
         }
     }
 

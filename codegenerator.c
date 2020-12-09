@@ -147,6 +147,7 @@ void generation()
 void gen_start() {
     string_dyn_init(&code_dest, 8);
     gen_head();
+    gen_inbuilt_funcs();
 }
 
 void gen_main() {

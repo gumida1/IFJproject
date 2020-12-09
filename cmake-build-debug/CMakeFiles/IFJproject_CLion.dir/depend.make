@@ -17,6 +17,7 @@ CMakeFiles/IFJproject_CLion.dir/expression.c.o: ../string_dyn.h
 CMakeFiles/IFJproject_CLion.dir/expression.c.o: ../symstack.c
 CMakeFiles/IFJproject_CLion.dir/expression.c.o: ../symstack.h
 
+CMakeFiles/IFJproject_CLion.dir/parser.c.o: ../codegenerator.h
 CMakeFiles/IFJproject_CLion.dir/parser.c.o: ../error.h
 CMakeFiles/IFJproject_CLion.dir/parser.c.o: ../expression.h
 CMakeFiles/IFJproject_CLion.dir/parser.c.o: ../parser.c
@@ -33,6 +34,7 @@ CMakeFiles/IFJproject_CLion.dir/scanner.c.o: ../string_dyn.h
 CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o: ../string_dyn.c
 CMakeFiles/IFJproject_CLion.dir/string_dyn.c.o: ../string_dyn.h
 
+CMakeFiles/IFJproject_CLion.dir/test.c.o: ../codegenerator.h
 CMakeFiles/IFJproject_CLion.dir/test.c.o: ../error.h
 CMakeFiles/IFJproject_CLion.dir/test.c.o: ../expression.h
 CMakeFiles/IFJproject_CLion.dir/test.c.o: ../parser.h

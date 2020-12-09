@@ -6,6 +6,7 @@
 #include "error.h"
 #include "symtable.h"
 #include "expression.h"
+#include "codegenerator.h"
 
 #define GET_TOKEN \
 if (getToken(token) != SCANNER_OK) return SCANNER_ERROR;

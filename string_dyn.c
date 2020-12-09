@@ -1,4 +1,5 @@
 #include "string_dyn.h"
+#include <stdio.h>
 
 //clears content 
 void string_dyn_clear(string_dyn *str) {
@@ -30,6 +31,7 @@ void string_dyn_add(string_dyn *str, const char *c_string) {
     str->size = str->size + c_string_size;
     strcat(str->string, c_string);
     str->string[str->size] = '\0';
+    printf("%s", str->string);
 }
 
 //adds char to existing string
