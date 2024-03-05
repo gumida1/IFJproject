@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/list/Documents/frigi/ifj/ifj-git/error.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.c
+scanner.h
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/scanner.h
+ctype.h
+-
+stdio.h
+-
+stdlib.h
+-
+stdbool.h
+-
+string.h
+-
+math.h
+-
+string_dyn.h
+/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h
+error.h
+/Users/list/Documents/frigi/ifj/ifj-git/error.h
+
+/Users/list/Documents/frigi/ifj/ifj-git/string_dyn.h
+stdlib.h
+-
+string.h
+-
+
